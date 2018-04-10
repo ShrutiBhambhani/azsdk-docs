@@ -2,7 +2,7 @@
 > <h4><font color="blue">IMPORTANT:</font></h4> If you are from CSE, please install the AzSK via instructions at https://aka.ms/devopskit so that CSE-specific policies are configured for your installation. <u>Do not</u> use the installation instructions on this page.
 
 
-**Release Version: AzSDK 2.11.xx <=> AzSK 3.0.x **  
+ <!-- **Release Version: AzSDK 2.11.xx <=> AzSK 3.0.x ** -->
 >**Pre-requisites**:
 > - PowerShell 5.0 or higher. 
 > - AzureRM Version 5.2.0
@@ -27,8 +27,8 @@ AzSK depends on a specific version of AzureRM and installs that during the insta
 As Azure features evolve and add more security controls, "Secure DevOpsKit for Azure" also evolve every month respecting the latest security features.
 It is always recommended to run on the latest devops kit module to scan your subscription with the latest rules. 
 
-Users who are still using older modules of devops kit continue to work only until N-2 version w.r.t production version e.g. If the current production version is 2.8.x, 
-then teams can continue to use 2.7.x and 2.6.x. As the version 2.9.x becomes available, automatically 2.6.x would stop working. 
+Users who are still using older modules of devops kit continue to work only until N-2 version w.r.t production version e.g. If the current production version is 3.2.x, 
+then teams can continue to use 3.0.x and 3.1.x. As the version 3.3.x becomes available, automatically 3.0.x would stop working. 
 
 More details on how it impacts each stage of DevOps are shared below:
 
@@ -56,7 +56,7 @@ It would also provide the user with required instructions to upgrade the module.
 ![Install_Autoupdate](../Images/00_Install_Autoupdate.PNG) 
 
 In a scenario where an organization has setup its own instance of "Secure DevOpsKit for Azure", the users can leverage 
-the auto update feature which has been introduced from the version 2.8.x.
+the auto update feature which has been introduced from the AzSDK version 2.8.x.
 As shown in the image above, user can either sign up for Autoupdate or go with manual update by running the command below:
 
 ```PowerShell
