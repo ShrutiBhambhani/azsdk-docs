@@ -51,7 +51,7 @@ When launching PowerShell, you will note that there are 2 prominent options pres
 (The image below shows what appears when you do a Windows-S and type 'PowerShell'). Of these, while either option works for AzSK
 from a functionality standpoint, there are some distinct advantages of using the ISE. 
 
-![00_PS_SearchISE](../Images/00_PS_Search_ISE.png)  
+![00_PS_SearchISE](../Images/00_PS_Search_ISE.PNG)  
  
  Here are some key benefits of the ISE:
  - You get a part-GUI, part-Console experience. If you have not used the command prompt for a while, this is a friendlier in-between.
@@ -65,7 +65,7 @@ from a functionality standpoint, there are some distinct advantages of using the
  > Note: When using the ISE, you can choose how you want the 'Script Pane' to appear. Usually a side-by-side view is handy because it lets
  you run commands from the script pane and see the outcomes in the PS console on the left. 
  See the image below:
-![00_PS_ISEScriptPane](../Images/00_PS_ISE_Script_Pane.png)  
+![00_PS_ISEScriptPane](../Images/00_PS_ISE_Script_Pane.PNG)  
 
 
 [Back to top...](GettingStarted_PowerShellTipsAzSK.md#list-of-tips)
@@ -96,7 +96,7 @@ This can be done simply by selecting one or more lines from the 'Script Pane' an
 'Run Script' runs your entire script pane and that is often not what you want when you are experimenting and improving your
 script one or two lines at a time.
  
-![00_PS_RunSelection](../Images/00_PS_RunSelection.png)    
+![00_PS_RunSelection](../Images/00_PS_RunSelection.PNG)    
 
 If the normal 'Play' button is clicked in the ISE above, then the entire script file will be run from top to bottom. However, if
 the 'Run Selection' button is clicked (or F8 is pressed), then only the two script lines (line 21 and line 24) will run leveraging

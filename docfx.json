@@ -40,9 +40,9 @@
         "apiSpecFolder": "azsdk-docs"
       },
       "_gitUrlPattern": "github",
-      "_appLogoPath": "Images/Icons/AzSDK_Logo.png",
+      "_appLogoPath": "Images/Icons/AzSDK_Logo.PNG",
       "_appFooter": "Copyright (c) - Microsoft 2017. All rights reserved.",
-      "_appFaviconPath": "Images/Icons/AzSDK_Favicon.png"
+      "_appFaviconPath": "Images/Icons/AzSDK_Favicon.PNG"
     },
     "globalMetadataFiles":[],
     "fileMetadataFiles": [],

@@ -10,7 +10,7 @@
 1. First verify that prerequisites are already installed:  
     Ensure that you have PowerShell version 5.0 or higher by typing **$PSVersionTable** in the PowerShell ISE console window and looking at the PSVersion in the output as shown below.) 
  If the PSVersion is older than 5.0, update PowerShell from [here](https://www.microsoft.com/en-us/download/details.aspx?id=54616).  
-   ![PowerShell Version](../Images/00_PS_Version.png)   
+   ![PowerShell Version](../Images/00_PS_Version.PNG)   
 
 2. Install the Secure DevOps Kit for Azure (AzSK) PS module:  
 	  

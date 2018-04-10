@@ -1,6 +1,6 @@
 # Continuous Assurance (CA)
 
-![Continous_Assurance](../Images/Continous_Assurance.png)
+![Continous_Assurance](../Images/Continous_Assurance.PNG)
 
 ## Baseline Continuous Assurance
 ### Contents
@@ -122,25 +122,25 @@ It is important to verify that everything has worked without hiccups. Please rev
 **Step-2: Verifying that CA Setup is complete**  
 **1:** In the Azure portal, select the application subscription that was used above and search for resources of type Automation Account. You should see an Automation Account created by the name 'AzSKContinuousAssurance'. Clicking on it will display the contents of the Automation Account (something that looks like the below, the counts shown may vary a little):
 
- ![04_CA_Overview_Screen](../Images/04_CA_Overview_Screen.png)
+ ![04_CA_Overview_Screen](../Images/04_CA_Overview_Screen.PNG)
 
 **2:** Click on 'Runbooks' tile. It should show the following runbook: 
 	
- ![04_CA_RunBooks](../Images/04_CA_RunBooks.png)
+ ![04_CA_RunBooks](../Images/04_CA_RunBooks.PNG)
 
 **3:** Click on 'Schedules' tile. It should show the scheduling details of runbook. You can change the schedule timings according to your need. Default schedule is created as below. First job will run ten minutes after the installation: 
 
- ![04_CA_Schedule](../Images/04_CA_Schedule.png)
+ ![04_CA_Schedule](../Images/04_CA_Schedule.PNG)
 
 **4:** Click on 'Run As Accounts' tile. It should show the following account:
 
- ![04_CA_Run_as_Account](../Images/04_CA_Run_as_Account.png)
+ ![04_CA_Run_as_Account](../Images/04_CA_Run_as_Account.PNG)
 
 **Step-3: Verifying that all required modules are downloaded successfully (after about two hours of starting the installation)**
 
 **1**: Click on the 'Modules' tile for the Automation Account. 'AzSK' module should be listed there. 'Status' column value for all modules should be 'Available' as below.
 
- ![04_CA_Downloaded_Modules](../Images/04_CA_Downloaded_Modules.png)
+ ![04_CA_Downloaded_Modules](../Images/04_CA_Downloaded_Modules.PNG)
  
 **Step-4: Verifying CA Runbook execution and OMS connectivity**  
 Once CA setup and modules download are completed successfully, the runbooks will automatically execute periodically (once a day) and scan the subscription and the specified resource groups for the application(s) for security issues. The outcomes of these scans will get stored in a storage account created by the installation (format : azsk\<YYYYMMDDHHMMSS> e.g. azsk20170505181008) and follows a similar structure as followed by standalone SVT execution (CSV file, LOG file, etc.).    
@@ -157,7 +157,7 @@ Let us verify that the runbook output is generated as expected and that the OMS 
 4. Download the ZIP file and extract its contents locally. The folder structure will be similar to how SVTs/Subscription Health scan generate when run locally. 
 5. In a single zip file you will find two folders (name format: Timestamp). One folder contains reports of Subscription Health scan and another folder contains reports of application(s) resource groups security scan.
 	
- ![04_CA_Storage_Container](../Images/04_CA_Storage_Container.png)
+ ![04_CA_Storage_Container](../Images/04_CA_Storage_Container.PNG)
 
 **2:** Verify that data is being sent to the target OMS workspace   
 

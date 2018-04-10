@@ -28,7 +28,7 @@ a specific tag value. More details can be found [here.](../02-Secure-Development
 When the command runs, you will start seeing output such as the following in the PowerShell console. 
 Time required for execution will depend on the number of resources that are being scanned.    
 
-![00_ServicesSecurity_Status](../Images/00_ServicesSecurity_Status.png)  
+![00_ServicesSecurity_Status](../Images/00_ServicesSecurity_Status.PNG)  
 
 **So what's happening?** 
 
@@ -51,7 +51,7 @@ every resource type that was evaluated from that resource group.
 To make these logs more convenient to use, they are grouped under separate folders as per 
 the resource groups under which the resources themselves are organized in your subscription. 
 
-![00_ServiceSecurity_OP_Folder](../Images/00_ServiceSecurity_OP_Folder.png)  
+![00_ServiceSecurity_OP_Folder](../Images/00_ServiceSecurity_OP_Folder.PNG)  
 
 We can now examine the CSV file to see the control summary. (It opens by default in XLS and you can 
 use "Format as Table", "Hide Columns", "Filter", etc., to quickly look at controls that have "Failed" 
@@ -68,7 +68,7 @@ for the Key Vault resource that was scanned.
 
 > **Note**: Timestamps are used to disambiguate multiple invocations of the cmdlets.  
 
-![00_ServicesSecurity_Status__OP_Log](../Images/00_ServicesSecurity_Status_OP_Log.png)  
+![00_ServicesSecurity_Status__OP_Log](../Images/00_ServicesSecurity_Status_OP_Log.PNG)  
 
 Congratulations! You have completed this section of the Getting Started guide successfully!!
 

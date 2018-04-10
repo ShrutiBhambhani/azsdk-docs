@@ -47,9 +47,9 @@ if you include the AzSK SVTs Release Task in your CICD pipeline or if you setup 
 Also, the AzSK policy files on the CDN are based on what we use internally in Core Services Engineering 
 (CSE) at Microsoft. We also keep them up to date from one release to next .
 
-<!--![Org Policy - The big picture](../Images/07_OrgPolicy_Big_Picture.png)-->
+<!--![Org Policy - The big picture](../Images/07_OrgPolicy_Big_Picture.PNG)-->
 
-<img src="../Images/07_OrgPolicy_Big_Picture.png" width="80%" />
+<img src="../Images/07_OrgPolicy_Big_Picture.PNG" width="80%" />
 
 
  
@@ -88,8 +88,8 @@ overridden for a specific feature (e.g., Storage), then it won't find a policy f
 
 The image below shows this flow with inline explanations: 
 
-<!--![Effective org Policy Evaluation](../Images/07_OrgPolicy_Online_Policy_Flow.png)-->
-<img alt="Effective Org Policy Evaluation" src="../Images/07_OrgPolicy_Online_Policy_Flow.png" width="60%" />
+<!--![Effective org Policy Evaluation](../Images/07_OrgPolicy_Online_Policy_Flow.PNG)-->
+<img alt="Effective Org Policy Evaluation" src="../Images/07_OrgPolicy_Online_Policy_Flow.PNG" width="60%" />
 
 
 ## Setting up org policy
@@ -245,7 +245,7 @@ The updated policy is now on the policy server. You can ask another person to te
 (e.g., Get-AzSKInfo) in a **fresh** PS console. When the command starts, it will show an updated message as in the 
 image below:
 
-![Org Policy - Changed Message](../Images/07_OrgPolicy_Chg_Org_Policy_Msg_PS.png) 
+![Org Policy - Changed Message](../Images/07_OrgPolicy_Chg_Org_Policy_Msg_PS.PNG) 
 
 This change will be immediately in effect across your organization. Anyone running AzSK commands (in fresh PS sessions)
 should see the new message. 
@@ -262,7 +262,7 @@ The local version of this file should be in the following folder:
     %userprofile%\Documents\WindowsPowerShell\Modules\AzSK\<version>\Framework\Configurations\SVT
 ```
 
-   ![Local AzSK Policies](../Images/07_OrgPolicy_Local_Policy_Folder.png) 
+   ![Local AzSK Policies](../Images/07_OrgPolicy_Local_Policy_Folder.PNG) 
  
 Note that the 'Configurations' folder in the above picture holds all policy files (for all features) of AzSK. We 
 will make copies of files we need to change from here and place the changed versions in the org-policy folder. 
@@ -274,13 +274,13 @@ Rather, **always** copy the file to your own org-policy folder and edit it there
  i) Copy the ControlSettings.json from the AzSK installation to your org-policy folder
  
  ii) Remove everything except the "NoOfApprovedAdmins" line while keeping the JSON object hierarchy/structure intact
-    ![Edit Number of Admins](../Images/07_OrgPolicy_Chg_Admin_Count.png) 
+    ![Edit Number of Admins](../Images/07_OrgPolicy_Chg_Admin_Count.PNG) 
 
  iii) Save the file
  
  iv) Edit the ServerConfigMetadata.json file in the org-policy folder and create an entry for this file (if not already there)
 
-![Entry in ServerConfigMetadata.json](../Images/07_OrgPolicy_Chg_SCMD_Entry.png) 
+![Entry in ServerConfigMetadata.json](../Images/07_OrgPolicy_Chg_SCMD_Entry.PNG) 
 
 ```JSON
 {
@@ -458,7 +458,7 @@ the anonymous access control shows as `Critical` in the output CSV and the GRS c
 the custom (internal tool) recommendation you wanted people in your org to follow. The image below shows the CSV file
 from a baseline scan after this change: 
 
-![Changed Storage controls - Baseline Scan](../Images/07_OrgPolicy_Chg_SVT_JSON.png) 
+![Changed Storage controls - Baseline Scan](../Images/07_OrgPolicy_Chg_SVT_JSON.PNG) 
 
 Likewise, if you run without the `-UseBaselineControls` parameter, you will see that the anon-alert control does not get evaluated and does not
 appear in the resulting CSV file. 

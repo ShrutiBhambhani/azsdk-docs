@@ -19,7 +19,7 @@ The "Secure DevOps Kit for Azure" (will be referred to as 'AzSK' henceforth) is 
 5. **`Alerting & Monitoring`:** Visibility of security status is important for individual application teams and also for central enterprise teams. We provide solutions that cater to the needs of both. Moreover, the solution spans across all stages of dev ops in effect bridging the gap between the *dev* team and the *ops* team from a security standpoint through the single, integrated views it generates.
 6. **`Cloud Risk Governance`:** Lastly, underlying all activities in the kit is a telemetry framework that generates events capturing usage, adoption, evaluation results, etc. This allows us to make measured improvements to security targeting areas of high risk and maximum usage before others.  
 
-![Secure_DevOps_Kit_for_Azure](Images/Secure_DevOps_Kit_Azure.png)
+![Secure_DevOps_Kit_for_Azure](Images/Secure_DevOps_Kit_Azure.PNG)
 
 [Back to top...](README.md#content)  
 
