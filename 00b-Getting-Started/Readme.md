@@ -38,7 +38,7 @@ in the table below:
 |Get-AzSKExpressRouteNetworkSecurityStatus (GES)|Validate secure configuration of ER-connected vNets. Also validates custom/supporting protections |Reader on ERNetwork, Reader on sub.|
 |Get-AzSKSubscriptionSecurityStatus (GSS)|Scans an Azure subscription for security best practices and configuration baselines for things such as alerts, ARM policy, RBAC, ASC, etc.|Reader on subscription|
 |Get-AzSKSupportedResourceTypes|Lists the currently supported Azure service types in AzSK. Basically, all resources in this list have SVTs available and these SVTs will be invoked whenever Get-AzSKAzureServicesSecurityStatus is run.|NA.|
-|Get-AzSKInfo|This command would help users to get details of various components of AzSK. |NA|
+|Get-AzSKInfo|This command would help users to get details of various components of AzSK. |Reader on subscription, Contributor on AzSKRG|
 |Install-AzSKContinuousAssurance (ICA)|Sets up continuous assurance for a subscription. This creates various artifacts such as resource group, storage account and automation account| Owner on subscription.|
 |Install-AzSKOMSSolution (IOM)|Creates and deploys an OMS view in a subscription that has an OMS workspace. The OMS view provides visibility to application state across dev ops stages. It also creates alerts, common search queries, etc.	|Reader on subscription.|
 |Remove-AzSKAlerts (RAL)|Removes the alerts configured by AzSK.|Owner on subscription.|

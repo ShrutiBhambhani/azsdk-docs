@@ -32,17 +32,17 @@ using AzSK or any other Azure PowerShell modules will become a breeze.
 - ['Run Selection' is your friend](GettingStarted_PowerShellTipsAzSK.md#run-selection-is-your-friend)
 - [Save your scripts!](GettingStarted_PowerShellTipsAzSK.md#save-your-scripts)
 - [Use 'Auto Complete'](GettingStarted_PowerShellTipsAzSK.md#use-auto-complete)
-- [Use backtick for long command lines](GettingStarted_PowerShellTipsAzSK.md#use-backtick-for-long-command-lines)
+- [Use backtick for long command lines](GettingStarted_PowerShellTipsAzSK.md#use-backtick-for-long-commands)
 - [Explore available commands](GettingStarted_PowerShellTipsAzSK.md#explore-available-commands)
 - [Use Get-Help](GettingStarted_PowerShellTipsAzSK.md#use-get-help)
 - [Avoid module version conflicts](GettingStarted_PowerShellTipsAzSK.md#avoid-module-version-conflicts)
 - [Use variables effectively](GettingStarted_PowerShellTipsAzSK.md#use-variables-effectively)  
-- [Strings - single or double quote?](GettingStarted_PowerShellTipsAzSK.md#strings-single-or-double-quote)  
+- [Strings - single or double quote?](GettingStarted_PowerShellTipsAzSK.md#strings---single-or-double-quote)  
 - [Listing your subscriptions](GettingStarted_PowerShellTipsAzSK.md#listing-your-subscriptions)  
 - [Switching to another subscription](GettingStarted_PowerShellTipsAzSK.md#switching-to-another-subscription) 
 - [Comparison operators are different!](GettingStarted_PowerShellTipsAzSK.md#comparison-operators-are-different) 
 - [A few handy loops](GettingStarted_PowerShellTipsAzSK.md#a-few-handy-loops)  
-- [To match or to like?](GettingStarted_PowerShellTipsAzSK.md#to-match-or-to-like) 
+- [To match or to like?](GettingStarted_PowerShellTipsAzSK.md#to--match-or-to--like) 
 
 ----------------------------------------------------------------
 
@@ -51,7 +51,7 @@ When launching PowerShell, you will note that there are 2 prominent options pres
 (The image below shows what appears when you do a Windows-S and type 'PowerShell'). Of these, while either option works for AzSK
 from a functionality standpoint, there are some distinct advantages of using the ISE. 
 
-![00_PS_SearchISE](../Images/00_PS_Search_ISE.PNG)  
+![00_PS_SearchISE](../Images/00_PS_Search_ISE.png)  
  
  Here are some key benefits of the ISE:
  - You get a part-GUI, part-Console experience. If you have not used the command prompt for a while, this is a friendlier in-between.
@@ -65,7 +65,7 @@ from a functionality standpoint, there are some distinct advantages of using the
  > Note: When using the ISE, you can choose how you want the 'Script Pane' to appear. Usually a side-by-side view is handy because it lets
  you run commands from the script pane and see the outcomes in the PS console on the left. 
  See the image below:
-![00_PS_ISEScriptPane](../Images/00_PS_ISE_Script_Pane.PNG)  
+![00_PS_ISEScriptPane](../Images/00_PS_ISE_Script_Pane.png)  
 
 
 [Back to top...](GettingStarted_PowerShellTipsAzSK.md#list-of-tips)
@@ -96,7 +96,7 @@ This can be done simply by selecting one or more lines from the 'Script Pane' an
 'Run Script' runs your entire script pane and that is often not what you want when you are experimenting and improving your
 script one or two lines at a time.
  
-![00_PS_RunSelection](../Images/00_PS_RunSelection.PNG)    
+![00_PS_RunSelection](../Images/00_PS_RunSelection.png)    
 
 If the normal 'Play' button is clicked in the ISE above, then the entire script file will be run from top to bottom. However, if
 the 'Run Selection' button is clicked (or F8 is pressed), then only the two script lines (line 21 and line 24) will run leveraging
@@ -301,7 +301,7 @@ PS C:\> get-module
 
 ModuleType Version    Name                                ExportedCommands                       
 ---------- -------    ----                                ----------------                       
-Script     2.6.0      AzSK                                {Get-AzSKAccessToken, Get-AzSKAzur...
+Script     3.0.0      AzSK                                {Get-AzSKAccessToken, Get-AzSKAzur...
 Script     4.1.0      AzureRM                             {Add-AzureAnalysisServicesAccount, A...
 Script     1.0.0.0    ISE                                 {Get-IseSnippet, Import-IseSnippet, ...
 Manifest   3.1.0.0    Microsoft.PowerShell.Management     {Add-Computer, Add-Content, Checkpoi...
