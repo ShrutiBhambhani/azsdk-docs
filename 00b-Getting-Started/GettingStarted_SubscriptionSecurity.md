@@ -12,7 +12,7 @@ Get-AzSKSubscriptionSecurityStatus -SubscriptionId <SubscriptionId>
 
 You will start seeing output such as the following in the PowerShell console. The script displays realtime progress as it scans your subscription for various security controls.
 
-![00_Security_Status](../Images/00_Security_Status.PNG)  
+![00_Security_Status](../Images/00_Security_Status.png)  
 
 Once the subscription check completes, you will see the output folder (auto) open. At this point, we are ready to take a closer look at the results of the scan!
 
@@ -55,7 +55,7 @@ These files are downloaded 'live' from a central location for command execution.
 rule files are also present in the folder corresponding to each AzSK PS modules on your machine…
 this helps if, for some reason, the central server is not available.)  
 
-![00_Security_Status__OP_Log](../Images/00_Security_Status__OP_Log.PNG)  
+![00_Security_Status__OP_Log](../Images/00_Security_Status__OP_Log.png)  
 
 
 > **Note**: Timestamps are used to disambiguate multiple invocations of the cmdlets.  
