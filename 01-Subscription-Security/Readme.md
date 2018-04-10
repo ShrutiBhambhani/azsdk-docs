@@ -433,7 +433,7 @@ Currently "effect" parameter of all the AzSK policies is configured as "audit". 
 The ARM policy configuration script currently enables the policies (Refer the list [here](../02-Secure-Development/ControlCoverage/Feature/ARMPolicyList.md)) in the subscription. Note that the policy level is currently set to 'Audit'.  
 
 >Policy definitions exist in the JSON file at this location: 
- C:\Users\SampleUser\Documents\WindowsPowerShell\Modules\AzSK\<version>\Framework\Configurations\SubscriptionSecurity\Subscription.ARMPolicies.json
+ C:\Users\SampleUser\Documents\WindowsPowerShell\Modules\AzSK\\\<version\>\Framework\Configurations\SubscriptionSecurity\Subscription.ARMPolicies.json
 
 #### How can I check for policy violations? 
 You could run the below command to check for the policy violations on the subscription. By default this shows the violations for the last one hour. Other intervals can be specified.
