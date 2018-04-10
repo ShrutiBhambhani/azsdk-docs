@@ -68,7 +68,7 @@ for the Key Vault resource that was scanned.
 
 > **Note**: Timestamps are used to disambiguate multiple invocations of the cmdlets.  
 
-![00_ServicesSecurity_Status__OP_Log](../Images/00_ServicesSecurity_Status_OP_Log.PNG)  
+![00_ServicesSecurity_Status_OP_Log](../Images/00_ServicesSecurity_Status_OP_Log.png)  
 
 Congratulations! You have completed this section of the Getting Started guide successfully!!
 
