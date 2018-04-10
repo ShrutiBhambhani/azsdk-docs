@@ -1,34 +1,34 @@
 ## Scan your Azure Subscription for security vulnerabilities
 ###### :clock10: 30 minutes to complete
-The Subscription Security health check features in AzSDK contains a set of scripts that examines a subscription and flags off security issues, misconfigurations or obsolete artifacts/settings which can put your subscription at higher risk.
+The Subscription Security health check features in AzSK contains a set of scripts that examines a subscription and flags off security issues, misconfigurations or obsolete artifacts/settings which can put your subscription at higher risk.
 This package adds-on to the exiting Azure capabilities like Security Center, IAM, etc. and extends it further to check for the presence for non-tenant accounts, SPN with higher priviliges, alerting configuration, etc.
 
-> Note: Ensure that you already have the latest version of AzSDK installed on your machine. If not, please follow instruction [here.](../00a-Setup/Readme.md)
+> Note: Ensure that you already have the latest version of AzSK installed on your machine. If not, please follow instruction [here.](../00a-Setup/Readme.md)
 
 **Step 1**: In the PowerShell ISE, run the below command after replacing `<SubscriptionId`> with your Azure SubscriptionId
 ```PowerShell  
-Get-AzSDKSubscriptionSecurityStatus -SubscriptionId <SubscriptionId>
+Get-AzSKSubscriptionSecurityStatus -SubscriptionId <SubscriptionId>
 ```  
 
 You will start seeing output such as the following in the PowerShell console. The script displays realtime progress as it scans your subscription for various security controls.
 
-![00_AzSDK_Security_Status](../Images/00_AzSDK_Security_Status.png)  
+![00_Security_Status](../Images/00_Security_Status.png)  
 
 Once the subscription check completes, you will see the output folder (auto) open. At this point, we are ready to take a closer look at the results of the scan!
 
 **So what's happening?** 
 
-Basically, the AzSDK command is scanning the specified target Azure resource (in this case your subscription) using a set of security rules implemented in the PS cmdlet 'Get-AzSDKSubscriptionSecurityStatus'. 
+Basically, the AzSK command is scanning the specified target Azure resource (in this case your subscription) using a set of security rules implemented in the PS cmdlet 'Get-AzSKSubscriptionSecurityStatus'. 
 
 As each rule is processed, the command prints out information about the specific security check being performed. For instance, above, the last rule it has checked is if any deprecated/stale account is present in the subscription.  
 
 Once all rules have been processed execution completes and the output folder is opened for you. 
 
-![00_AzSDK_Security_Status_OP_Folder](../Images/00_AzSDK_Security_Status_OP_Folder.png)   
+![00_Security_Status_OP_Folder](../Images/00_Security_Status_OP_Folder.png)   
 
 **Understanding the ouputs** 
 
-As the rules are checked, in the background AzSDK collates the following: 
+As the rules are checked, in the background AzSK collates the following: 
 - summary information of the control evaluation (pass/fail) status in a CSV file, 
 - detailed control evaluation log in a LOG file and
 - a few other anciliary files for additional support
@@ -43,19 +43,19 @@ controls where it is not possible to mechanically determine "Pass" or "Fail".)
 Basic 'quick fix' type guidance for addressing security issues flagged by the security scan is available
 in the 'Recommendation' column of the CSV file.
 
-![00_AzSDK_Security_Status_OP_CSV](../Images/00_AzSDK_Security_Status_OP_CSV.PNG)  
+![00_Security_Status_OP_CSV](../Images/00_Security_Status_OP_CSV.PNG)  
 
 For controls that are marked 'Failed' or 'Verify', there is usually additional information 
 in the Detailed.LOG file in the <subscription-name> folder to help understand why a control was assessed as 'Failed' 
-(or what needs verification if it was marked as 'Verify'). For instance, in the picture below, AzSDK is telling us that 
+(or what needs verification if it was marked as 'Verify'). For instance, in the picture below, AzSK is telling us that 
 there were more number of 
 admins/owners in the subscription than the approved limit. (Just as FYI, all such 
 policy/config info is present in JSON-based rule files that each command uses in the background. 
 These files are downloaded 'live' from a central location for command execution. Copies of these control 
-rule files are also present in the folder corresponding to each AzSDK PS modules on your machine…
+rule files are also present in the folder corresponding to each AzSK PS modules on your machine…
 this helps if, for some reason, the central server is not available.)  
 
-![00_AzSDK_Security_Status__OP_Log](../Images/00_AzSDK_Security_Status__OP_Log.png)  
+![00_Security_Status__OP_Log](../Images/00_Security_Status__OP_Log.png)  
 
 
 > **Note**: Timestamps are used to disambiguate multiple invocations of the cmdlets.  

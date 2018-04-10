@@ -18,17 +18,17 @@
 
 ## Overview
 
-The Secure DevOps Kit generates telemetry events from all stages of dev ops. That is, events are generated when an engineer runs a scan ad hoc or when SVTs are run in CICD or subscriptions are scanned via Continuous Assurance (CA). The telemetry can be collected and aggregated across an organization. When combined with other organization metadata (e.g., a mapping of subscriptions to applications or service lines or business groups), this can yield a powerful platform for supporting a data-driven approach cloud risk governance and allow organizations to drive measured and targeted security improvement initiatives in a continuous and incremental fashion (just like the rest of dev ops). The telemetry data from AzSDK can be leveraged in two key ways:
+The Secure DevOps Kit generates telemetry events from all stages of dev ops. That is, events are generated when an engineer runs a scan ad hoc or when SVTs are run in CICD or subscriptions are scanned via Continuous Assurance (CA). The telemetry can be collected and aggregated across an organization. When combined with other organization metadata (e.g., a mapping of subscriptions to applications or service lines or business groups), this can yield a powerful platform for supporting a data-driven approach cloud risk governance and allow organizations to drive measured and targeted security improvement initiatives in a continuous and incremental fashion (just like the rest of dev ops). The telemetry data from AzSK can be leveraged in two key ways:
 
 - Application Insights based – called Control Telemetry (will be renamed to Org Telemetry soon). There are two ways possible. One, configure it centrally, two, configure it specifically in end-user's machine
 
-- API based – this is a custom solution using WebAPI and SQL to collect events and enrich it with organizational metadata. This lets an organization track and drive adoption and usage of the AzSDK and provides a window into the org's DevSecOps Maturity. API based telemetry will be release in coming months when we release documents for how organization can customize AzSDK for their needs
+- API based – this is a custom solution using WebAPI and SQL to collect events and enrich it with organizational metadata. This lets an organization track and drive adoption and usage of the AzSK and provides a window into the org's DevSecOps Maturity. API based telemetry will be release in coming months when we release documents for how organization can customize AzSK for their needs
 
 [Back to top...](#contents)
 
 ## Control Telemetry
 
-The part in the telemetry feature that captures mainly the adoption, usage and security issues in resources scanned by AzSDK across all the subscriptions and services in an organization. This helps organizations to be aware of the security health of the applications, improvements needed and done. By default this is disabled and user have to enable it in their machine to push the data.
+The part in the telemetry feature that captures mainly the adoption, usage and security issues in resources scanned by AzSK across all the subscriptions and services in an organization. This helps organizations to be aware of the security health of the applications, improvements needed and done. By default this is disabled and user have to enable it in their machine to push the data.
 
 Currently the toolkit support App Insights based collector. The ability to set the collector settings across the organization in a single place will be available in coming months, for now please refer [local control telemetry](#local-control-telemetry) section for configuring locally in user's machine.
 
@@ -57,10 +57,10 @@ Coming soon
 The team that created the instrumentation key (in [section](#application-insights)) can share the key with the below command for the application development teams to use it. It is preferred to have this step as part of on-boarding.
 
 ``` PowerShell
-Set-AzSDKLocalControlTelemetrySettings -LocalControlTelemetryKey '<instrumentation-key>' -EnableLocalControlTelemetry $true
+Set-AzSKLocalControlTelemetrySettings -LocalControlTelemetryKey '<instrumentation-key>' -EnableLocalControlTelemetry $true
 ```
 
-The command configures the AzSDK toolkit to send data to the given Applications Insights account from user's machine.
+The command configures the AzSK toolkit to send data to the given Applications Insights account from user's machine.
 
 [Back to top...](#contents)
 
@@ -98,7 +98,7 @@ ResourceId | Azure URI for the resource scanned
 ResourceName | Name of the resource that was scanned
 RunIdentifier | Internal identifier for the run. All the scans from the same run with have same RunIdentifier. But there is a possibility for two runs having same RunIdentifier. Please use <b>UniqueRunIdentifier</b> property for correlations
 ScanKind | <ul><li>**SubCore** - Partial or Complete<ul><li>**Partial** - All controls were not scanned</li><li>**Complete** - All controls were scanned</li></ul></li><li>**Services** - Partial or ResourceGroup or Complete<ul><li>**Partial** - All controls or all resources in a resource group or subscription was not scanned</li><li>**ResourceGroup** - All resources that belong to a resource group was scanned against all applicable controls</li><li>**Subscription** - All resources that belong to a subscription was scanned against all applicable controls</li></ul></li></ul>
-ScannerModuleName | Mostly it is AzSDK, sometimes if preview version is used it will be AzSDKPreview
+ScannerModuleName | Mostly it is AzSK, sometimes if preview version is used it will be AzSKPreview
 ScannerVersion | PowerShell module version
 ScanSource | Source of the scan - SpotCheck or VSO or Runbook <ul><li>**SpotCheck** (SDL) - An ad-hoc scan ran from an user machine.</li><li>**VSO** (CICD) - Scan ran from Visual Studio Online as part of release pipeline</li><li>**Runbook** (CA) - Scan ran from Runbook as part of regular schedule</li></ul>
 SubscriptionId | Subscription id
@@ -207,13 +207,13 @@ There is two levels available to set by the end-user.
 #### To disable
 
 ``` PowerShell
-Set-AzSDKUsageTelemetryLevel -Level None
+Set-AzSKUsageTelemetryLevel -Level None
 ```
 
 #### To enable
 
 ``` PowerShell
-Set-AzSDKUsageTelemetryLevel -Level Anonymous
+Set-AzSKUsageTelemetryLevel -Level Anonymous
 ```
 
 [Back to top...](#contents)

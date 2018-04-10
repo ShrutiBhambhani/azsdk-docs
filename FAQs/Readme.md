@@ -9,13 +9,13 @@
   - [Message: "Warning : Microsoft Azure PowerShell collects data about how users use PowerShell cmdlets..."](../00a-Setup/Readme.md#message-warning--microsoft-azure-powershell-collects-data-about-how-users-use-powershell-cmdlets)
   
 - ### Subscription-Security
-  - #### AzSDK: Subscription Security Provisioning
+  - #### AzSK: Subscription Security Provisioning
     - [Is it possible to setup an individual feature (e.g., just alerts or just ARM Policy)?](../01-Subscription-Security/Readme.md#is-it-possible-to-setup-an-individual-feature-eg-just-alerts-or-just-arm-policy)
-  - #### AzSDK: Subscription Activity Alerts  
+  - #### AzSK: Subscription Activity Alerts  
     - [Can I get the alert emails to go to a distribution group instead of an individual email id?](../01-Subscription-Security/Readme.md#can-i-get-the-alert-emails-to-go-to-a-distribution-group-instead-of-an-individual-email-id)
     - [How can I find out more once I receive an alert email?](../01-Subscription-Security/Readme.md#how-can-i-find-out-more-once-i-receive-an-alert-email)
     - [Is there a record maintained of the alerts that have fired?](../01-Subscription-Security/Readme.md#is-there-a-record-maintained-of-the-alerts-that-have-fired)
-  - #### AzSDK: Subscription Security - ARM Policy
+  - #### AzSK: Subscription Security - ARM Policy
     - [What happens if an action in the subscription violates the policy?](../01-Subscription-Security/Readme.md#what-happens-if-an-action-in-the-subscription-violates-the-policy)
     - [Which ARM policies are installed by the setup script?](../01-Subscription-Security/Readme.md#which-arm-policies-are-installed-by-the-setup-script)
     - [How can I check for policy violations?](../01-Subscription-Security/Readme.md#how-can-i-check-for-policy-violations)
@@ -29,8 +29,8 @@
 
 - ### Security-In-CICD  
   - #### Security Verification Tests (SVTs) in VSTS pipeline
-    - [I have enabled AzSDK_SVTs task in my release pipeline. I am getting an error ‘The specified module 'AzSDK' was not loaded because no valid module file was found in any module directory’. How do I resolve this issue?](../03-Security-In-CICD/Readme.md#i-have-enabled-azsdk_svts-task-in-my-release-pipeline-i-am-getting-an-error-the-specified-module-azsdk-was-not-loaded-because-no-valid-module-file-was-found-in-any-module-directory-how-do-i-resolve-this-issue)
-    - [I have enabled AzSDK_SVTs task in my release pipeline. It is taking too much time every time I queue a release, how can I reduce that time?](../03-Security-In-CICD/Readme.md#i-have-enabled-azsdk_svts-task-in-my-release-pipeline-it-is-taking-too-much-time-every-time-i-queue-a-release-how-can-i-reduce-that-time)
+    - [I have enabled AzSK_SVTs task in my release pipeline. I am getting an error ‘The specified module 'AzSK' was not loaded because no valid module file was found in any module directory’. How do I resolve this issue?](../03-Security-In-CICD/Readme.md#i-have-enabled-AzSK_svts-task-in-my-release-pipeline-i-am-getting-an-error-the-specified-module-AzSK-was-not-loaded-because-no-valid-module-file-was-found-in-any-module-directory-how-do-i-resolve-this-issue)
+    - [I have enabled AzSK_SVTs task in my release pipeline. It is taking too much time every time I queue a release, how can I reduce that time?](../03-Security-In-CICD/Readme.md#i-have-enabled-AzSK_svts-task-in-my-release-pipeline-it-is-taking-too-much-time-every-time-i-queue-a-release-how-can-i-reduce-that-time)
 
 - ### Continuous Assurance (CA)  
   - #### Baseline Continuous Assurance
@@ -42,7 +42,7 @@
     - [How can I tell that my CA setup has worked correctly?](../04-Continous-Assurance/Readme.md#how-can-i-tell-that-my-ca-setup-has-worked-correctly)
     - [Is providing resource groups mandatory?](../04-Continous-Assurance/Readme.md#is-providing-resource-groups-mandatory)
     - [What if I need to change the resource groups after a few weeks?](../04-Continous-Assurance/Readme.md#what-if-i-need-to-change-the-resource-groups-after-a-few-weeks)
-    - [Do I need to also setup AzSDK OMS solution?](../04-Continous-Assurance/Readme.md#do-i-need-to-also-setup-azsdk-oms-solution)
+    - [Do I need to also setup AzSK OMS solution?](../04-Continous-Assurance/Readme.md#do-i-need-to-also-setup-AzSK-oms-solution)
     - [How much does it cost to setup Continuous Assurance alongwith OMS monitoring solution?](../04-Continous-Assurance/Readme.md#how-much-does-it-cost-to-setup-continuous-assurance-alongwith-oms-monitoring-solution)
 
     

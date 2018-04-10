@@ -46,8 +46,8 @@
 
 ### Overview
 Security Verifications Tests (or SVTs) represent the core of security testing functionality of the 
-AzSDK. For all the prominent features in Azure (e.g., Web Apps, Storage, SQL DB, Key Vault, etc.), 
-the AzSDK ccan perform automated security checks against Azure resources of those types. 
+AzSK. For all the prominent features in Azure (e.g., Web Apps, Storage, SQL DB, Key Vault, etc.), 
+the AzSK ccan perform automated security checks against Azure resources of those types. 
 These checks are based on security standards and best practices as applicable for sensitive corporate 
 data at Microsoft. In general, these are likely to be applicable for most scenarios that involve 
 processing sensitive data in other environments.
@@ -58,16 +58,16 @@ The outcome of the analysis is printed on the console during SVT execution and a
 also generated for subsequent use.
 
 The CSV file and LOG file are generated under a subscription-specific sub-folder in the folder  
-*%LOCALAPPDATA%\Microsoft\AzSDKLogs\Sub_[yourSubscriptionName]*  
+*%LOCALAPPDATA%\Microsoft\AzSKLogs\Sub_[yourSubscriptionName]*  
 E.g.  
-C:\Users\UserName\AppData\Local\Microsoft\AzSDKLogs\Sub_[yourSubscriptionName]\20170331_142819
+C:\Users\UserName\AppData\Local\Microsoft\AzSKLogs\Sub_[yourSubscriptionName]\20170331_142819
 
 There are multiple ways that SVTs can be executed:
 1. Scan all resources in a subscription. This is the simplest approach and simply enumerates 
 all resources in a specific subscription and runs security checks against all the known resource 
 types found.
 2. Scan all resources in specific resource group(s). In this option, you can target resources
-within one or more resource group. The AzSDK simply enumerates all resources in the resource group(s) 
+within one or more resource group. The AzSK simply enumerates all resources in the resource group(s) 
 and runs security checks..
 3. Scan a specific resource. In this approach, you can target a specific (individual) resource.
 4. Scan a specific resource type. In this approach, you can target a specific resource type (e.g., Storage)
@@ -82,7 +82,7 @@ The cmdlet below checks security control state and generates a status report of 
 in a given subscription:  
 
 ```PowerShell
-Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId>
+Get-AzSKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId>
 ```
 		
 The parameters required are:
@@ -98,7 +98,7 @@ The parameters required are:
 The cmdlet below scans all Azure resources in the specified resource groups within a subscription and 
 generates a status report:
 ```PowerShell
-Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -ResourceGroupNames <ResourceGroupNames>
+Get-AzSKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -ResourceGroupNames <ResourceGroupNames>
 ```
 	
 The parameters required are:
@@ -108,12 +108,12 @@ The parameters required are:
 The cmdlet below scans all resources with specific tag names/values under a given subscription:  
 1. Single Tag
 ```PowerShell
-    Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -TagName <TagName> -TagValue <TagValue>
+    Get-AzSKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -TagName <TagName> -TagValue <TagValue>
 ```
 		
 2. Multiple Tags
 ```PowerShell
-    Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -Tag <TagHashset>
+    Get-AzSKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -Tag <TagHashset>
 ```
 		
 The parameters required are:
@@ -126,7 +126,7 @@ The parameters required are:
 ### Execute SVTs for a specific resource
 The cmdlet below scans a single Azure resource within a specific resource group in a subscription and generates a status report:
 ```PowerShell
-Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -ResourceGroupNames <ResourceGroupNames> -ResourceName <ResourceName>
+Get-AzSKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -ResourceGroupNames <ResourceGroupNames> -ResourceName <ResourceName>
 ```
 	
 The parameters required are:
@@ -143,23 +143,23 @@ The parameters required are:
 The cmdlet below scans all resources for a specific Azure resource type in a subscription (and a resource group [optional]):
 1. 	Using Azure resource type
 ```PowerShell
- Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> [-ResourceGroupNames <ResourceGroupNames>] -ResourceType <ResourceType>
+ Get-AzSKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> [-ResourceGroupNames <ResourceGroupNames>] -ResourceType <ResourceType>
 ```
 		
 The parameters required are:
 - SubscriptionId – Subscription ID is the identifier of your Azure subscription. 
 - [Optional] ResourceGroupNames  – Name of the container that holds related resource under an Azure subscription. Comma separated values are allowed.
-- ResourceType – Resource type as defined by Azure. E.g.: Microsoft.KeyVault/vaults. Run command 'Get-AzSDKSupportedResourceTypes' to get the list of supported types.
+- ResourceType – Resource type as defined by Azure. E.g.: Microsoft.KeyVault/vaults. Run command 'Get-AzSKSupportedResourceTypes' to get the list of supported types.
 
 2. Using a user-friendly resource type name
 ```PowerShell
- Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> [-ResourceGroupNames <ResourceGroupNames>] -ResourceTypeName <ResourceTypeName>
+ Get-AzSKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> [-ResourceGroupNames <ResourceGroupNames>] -ResourceTypeName <ResourceTypeName>
 ```
 	
 The parameters required are:
 - SubscriptionId – Subscription ID is the identifier of your Azure subscription. 
 - [Optional] ResourceGroupNames – Name of the container that holds related resource under an Azure subscription. Comma separated values are allowed.
-- ResourceTypeName – Friendly name of resource type. E.g.: KeyVault. Run command 'Get-AzSDKSupportedResourceTypes' to get the list of supported values.  
+- ResourceTypeName – Friendly name of resource type. E.g.: KeyVault. Run command 'Get-AzSKSupportedResourceTypes' to get the list of supported values.  
 
 [Back to top…](Readme.md#contents)
 
@@ -167,7 +167,7 @@ The parameters required are:
 In 'baseline mode' a centrally defined 'control baseline' is used as the target control set for scanning.
 The cmdlet below scans azure resources in a subscription in Baseline mode and generates a status report:
 ```PowerShell
-Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -UseBaselineControls
+Get-AzSKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -UseBaselineControls
 ```
 	
 The parameters required are:
@@ -177,19 +177,19 @@ The parameters required are:
 [Back to top…](Readme.md#contents)
 
 ### Execute SVTs using "-UsePartialCommits" switch
-The Get-AzSDKAzureServicesSecurityStatus command now supports checkpointing via a "-UsePartialCommits" switch. When this switch is used, the command periodically persists scan progress to disk. That way, if the scan is interrupted or an error occurs, a future retry can resume from the last saved state. This capability also helps in Continuous Assurance scans where Azure currently suspends 'long running' automation jobs by default.The cmdlet below checks security control state via a "-UsePartialCommits" switch:  
+The Get-AzSKAzureServicesSecurityStatus command now supports checkpointing via a "-UsePartialCommits" switch. When this switch is used, the command periodically persists scan progress to disk. That way, if the scan is interrupted or an error occurs, a future retry can resume from the last saved state. This capability also helps in Continuous Assurance scans where Azure currently suspends 'long running' automation jobs by default.The cmdlet below checks security control state via a "-UsePartialCommits" switch:  
 
 ```PowerShell
-Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -UsePartialCommits
+Get-AzSKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -UsePartialCommits
 ```
 		
 [Back to top…](Readme.md#contents)
 
 ### Understand the scan reports
-Each AzSDK cmdlet writes output to a folder whose location is determined as below:
-- AzSDK-Root-Output-Folder = %LocalAppData%\Microsoft\AzSDKLogs  
+Each AzSK cmdlet writes output to a folder whose location is determined as below:
+- AzSK-Root-Output-Folder = %LocalAppData%\Microsoft\AzSKLogs  
 	```
-	E.g., "C:\Users\userName\AppData\Local\Microsoft\AzSDKLogs"
+	E.g., "C:\Users\userName\AppData\Local\Microsoft\AzSKLogs"
 	```
 - Sub-Folder = Sub_\<Subscription Name>\\\<Timestamp>_\<CommandAbbreviation>  
 	```
@@ -197,7 +197,7 @@ Each AzSDK cmdlet writes output to a folder whose location is determined as belo
 	```	
 Thus, the full path to an output folder might look like:  
 ```
-E.g., "C:\Users\userName\AppData\Local\Microsoft\AzSDKLogs\Sub_[yourSubscriptionName]\20170321_183800_GSS\
+E.g., "C:\Users\userName\AppData\Local\Microsoft\AzSKLogs\Sub_[yourSubscriptionName]\20170321_183800_GSS\
 ```
 	
 > **Note**: By default, cmdlets open this folder upon completion of the cmdlet (we assume you'd be interested in examining the control evaluation status, etc.)
@@ -205,13 +205,13 @@ E.g., "C:\Users\userName\AppData\Local\Microsoft\AzSDKLogs\Sub_[yourSubscription
 The contents of the output folder are organized as under:  
 ![02_Output_Log_Folder](../Images/02_Output_Log_Folder.PNG)
 
-- *\SecurityReport-\<timestamp>.csv*- This is the summary CSV file listing all applicable controls and their evaluation status. This file will be generated only for SVT cmdlets like Get-AzSDKAzureServicesSecurityStatus, Get-AzSDKSubscriptionSecurityStatus etc.  
+- *\SecurityReport-\<timestamp>.csv*- This is the summary CSV file listing all applicable controls and their evaluation status. This file will be generated only for SVT cmdlets like Get-AzSKAzureServicesSecurityStatus, Get-AzSKSubscriptionSecurityStatus etc.  
 - *\\\<Resource_Group_or_Subscription_Name>* - This corresponds to the resource-group or subscription that was evaluated  
 	- *\\\<resourceType>.log*- This is the detailed/raw output log of controls evaluated  
 - *\Etc*  
 	- *\PowerShellOutput.log* - This is the raw PS console output captured in a file.  
 	- *\EnvironmentDetails.log* - This is the log file containing environment data of current PowerShell session.  
-	- *\SecurityEvaluationData.json* - This is the detailed security data for each control that was evaluated. This file will be generated only for SVT cmdlets like Get-AzSDKAzureServicesSecurityStatus, Get-AzSDKSubscriptionSecurityStatus etc.
+	- *\SecurityEvaluationData.json* - This is the detailed security data for each control that was evaluated. This file will be generated only for SVT cmdlets like Get-AzSKAzureServicesSecurityStatus, Get-AzSKSubscriptionSecurityStatus etc.
 	![02_Etc_Folder_Structure](../Images/02_Etc_Folder_Structure.PNG)
 - *\FixControlScripts* - This folder contains scripts to fix the failed controls. The folder is generated only when 'GenerateFixScript' switch is passed and one or more failed controls support automated fixing.  
 	- *\README.txt* - This is the help file which describes about the 'FixControlScripts' folder.
@@ -227,10 +227,10 @@ You can use these outputs as follows -
 [Back to top…](Readme.md#contents)
 
 ### Generate output report in PDF format
-The Get-AzSDKAzureServicesSecurityStatus command now supports generating output report in PDF format using "-GeneratePDF" parameter. You can use this parameter to generate output logs in PDF format. You can use this parameter to generate report either in 'portrait'or 'landscape mode'.The cmdlet below can be used to generate PDF report:  
+The Get-AzSKAzureServicesSecurityStatus command now supports generating output report in PDF format using "-GeneratePDF" parameter. You can use this parameter to generate output logs in PDF format. You can use this parameter to generate report either in 'portrait'or 'landscape mode'.The cmdlet below can be used to generate PDF report:  
 
 ```PowerShell
-Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -GeneratePDF <PdfOrientation>
+Get-AzSKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -GeneratePDF <PdfOrientation>
 ```
 		
 The parameters required are:
@@ -240,7 +240,7 @@ The parameters required are:
 If you execute SVTs using above command, a new PDF file with name 'SecurityReport' will get generated in the root output logs folder.
 
 The PDF report consists of following sections:
-- *Basic Details* - It consists of basic details like subscription id, name, AzSDK Version, Date of generation, user, command executed etc.
+- *Basic Details* - It consists of basic details like subscription id, name, AzSK Version, Date of generation, user, command executed etc.
 - *Security Report Summary* -It displays the security status of all the controls Ids which gets scanned.
 - *Powershell Output* -It displays the raw PS console output captured during execution of SVTs.
 - *Detailed Output* -It displays the detailed/raw output log of controls evaluated.
@@ -281,7 +281,7 @@ Below resource types can be checked for validating the security controls
 
 This list continues to grow so best way to confirm is to look at the output of the following command:  
  ```PowerShell  
-Get-AzSDKSupportedResourceTypes  
+Get-AzSKSupportedResourceTypes  
  ```    
 >  We regularly add SVT coverage for more Azure features. Please write to us (mailto:AzSDKSupExt@microsoft.com) if you are looking for SVTs for a service not listed here.  
 
@@ -306,10 +306,10 @@ Note that not all security checks are automatable. The 'non-automated' checks (t
 - 	Recommendation - Recommended steps to implement a fix for a failed control.  
 
 #### How can I find out what to do for controls that are marked as 'manual'?
-Refer the recommendations provided in the output CSV file for the security controls defined by AzSDK. You can also email to AzSDKSupExt@microsoft.com or reach out to your security point of contact for any queries.  
+Refer the recommendations provided in the output CSV file for the security controls defined by AzSK. You can also email to AzSDKSupExt@microsoft.com or reach out to your security point of contact for any queries.  
 
 #### How can I implement fixes for the failed ones which have no auto-fix available?
-Refer the recommendations provided in the output CSV file for the security controls defined by AzSDK. You can also email to AzSDKSupExt@microsoft.com or reach out to your security point of contact for any queries.  
+Refer the recommendations provided in the output CSV file for the security controls defined by AzSK. You can also email to AzSDKSupExt@microsoft.com or reach out to your security point of contact for any queries.  
 
 #### Troubleshooting
 |Error	|Comments|
@@ -327,7 +327,7 @@ Refer the recommendations provided in the output CSV file for the security contr
 The following cmdlet can be used to scan the secure configuration of an ExpressRoute-connected virtual network (referred to as ERVnet below):
 
 ```PowerShel
- Get-AzSDKExpressRouteNetworkSecurityStatus -SubscriptionId <SubscriptionId>
+ Get-AzSKExpressRouteNetworkSecurityStatus -SubscriptionId <SubscriptionId>
 ```
 
 This cmdlet assumes that the vNet connected to ExpressRoute circuit is in a ResourceGroup named 'ERNetwork' or 'ERNetwork-DMZ'. 

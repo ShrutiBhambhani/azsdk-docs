@@ -1,26 +1,26 @@
 # Installation Guide
-> <h4><font color="blue">IMPORTANT:</font></h4> If you are from CSE, please install the AzSDK via instructions at https://aka.ms/devopskit so that CSE-specific policies are configured for your installation. <u>Do not</u> use the installation instructions on this page.
+> <h4><font color="blue">IMPORTANT:</font></h4> If you are from CSE, please install the AzSK via instructions at https://aka.ms/devopskit so that CSE-specific policies are configured for your installation. <u>Do not</u> use the installation instructions on this page.
 
 
-**Release Version: 2.8.xx**  
+**Release Version: AzSDK 2.11.xx <=> AzSK 3.0.x **  
 >**Pre-requisites**:
 > - PowerShell 5.0 or higher. 
-> - AzureRM Version 4.1.0
+> - AzureRM Version 5.2.0
 	
 1. First verify that prerequisites are already installed:  
     Ensure that you have PowerShell version 5.0 or higher by typing **$PSVersionTable** in the PowerShell ISE console window and looking at the PSVersion in the output as shown below.) 
  If the PSVersion is older than 5.0, update PowerShell from [here](https://www.microsoft.com/en-us/download/details.aspx?id=54616).  
    ![PowerShell Version](../Images/00_PS_Version.png)   
 
-2. Install the Secure DevOps Kit for Azure (AzSDK) PS module:  
+2. Install the Secure DevOps Kit for Azure (AzSK) PS module:  
 	  
 ```PowerShell
-  Install-Module AzSDK -Scope CurrentUser
+  Install-Module AzSK -Scope CurrentUser
 ```
 
 Note: You may need to use `-AllowClobber` and `-Force` options with the Install-Module command 
 above if you have a different version of AzureRM installed on your machine. 
-AzSDK depends on a specific version of AzureRM and installs that during the installation above.  
+AzSK depends on a specific version of AzureRM and installs that during the installation above.  
 
 ------------------------------------------------
 ### Backward compatibility
@@ -42,7 +42,7 @@ No impact to CA as it would automatically upgrade to latest version.
 Before every scan it checks whether there has been a latest release of the devops kit and upgrade itself.
 All the further scans would happen using the latest version.
 
-**AzSDK CICD Extension:**
+**AzSK CICD Extension:**
 No impact to default behavior of CICD. It always runs the scan with the latest version available in the PS Gallery. 
 If teams have overridden the default behavior by specifying a version number during the build, then the same restriction of N-2 applies here as well.
 
@@ -51,7 +51,7 @@ It is always recommended to scan your subscription with the latest devops kit mo
 "Secure DevOps kit for Azure" module provide different auto update capabilities w.r.t different stages of devops. More details are below:
 
 **Adhoc Scans:**
-Users running the older version of AzSDK scan from their local machine will get a warning as shown in the image below.
+Users running the older version of AzSK scan from their local machine will get a warning as shown in the image below.
 It would also provide the user with required instructions to upgrade the module.
 ![Install_Autoupdate](../Images/00_Install_Autoupdate.PNG) 
 
@@ -60,7 +60,7 @@ the auto update feature which has been introduced from the version 2.8.x.
 As shown in the image above, user can either sign up for Autoupdate or go with manual update by running the command below:
 
 ```PowerShell
-  Set-AzSDKPolicySettings -AutoUpdate On|Off
+  Set-AzSKPolicySettings -AutoUpdate On|Off
 ```
 
 User needs to close and reopen a fresh session once the command is run.
@@ -80,25 +80,25 @@ No action is required from the user.
 Users can also run the command below to confirm the same:
 
 ```PowerShell
-  Get-AzSDKContinuousAssurance -SubscriptionId '<subscriptionId>'
+  Get-AzSKContinuousAssurance -SubscriptionId '<subscriptionId>'
 ```
 
-**AzSDK CICD Extension**
-AzSDK CICD extension will always run the scan using latest module of AzSDK from the gallery. This is the default behavior in the case of both hosted and non-hosted agents. 
+**AzSK CICD Extension**
+AzSK CICD extension will always run the scan using latest module of AzSK from the gallery. This is the default behavior in the case of both hosted and non-hosted agents. 
 
 You could find more details about CICD [here.](../03-Security-In-CICD/Readme.md)
  
 ------------------------------------------------
 ### FAQs
 #### Should I run PowerShell ISE as administrator or regular user?
-Please run PowerShell ISE as a regular user. The AzSDK has been thoroughly tested to run in normal user (non-elevated) mode. As much as possible, please do not launch your PS sessions in "Administrator" mode. There is nothing that the AzSDK does that needs elevated privileges on the local system. Even the installation command itself uses a '-Scope CurrentUser' parameter internally.  
+Please run PowerShell ISE as a regular user. The AzSK has been thoroughly tested to run in normal user (non-elevated) mode. As much as possible, please do not launch your PS sessions in "Administrator" mode. There is nothing that the AzSK does that needs elevated privileges on the local system. Even the installation command itself uses a '-Scope CurrentUser' parameter internally.  
 
 #### Error message: "Running scripts is disabled on this system..."
-This is an indication that PowerShell script loading and execution is disabled on your machine. You will need to enable it before the AzSDK installation script (which itself is a PowerShell script) can run. 
+This is an indication that PowerShell script loading and execution is disabled on your machine. You will need to enable it before the AzSK installation script (which itself is a PowerShell script) can run. 
 ```PowerShell
 Get-ExecutionPolicy -Scope CurrentUser
 ```
-If you run above command in the PS console, you will likely see that the policy level is either 'Restricted' or 'Undefined'. For AzSDK cmdlets to run, it needs to be set to 'RemoteSigned'.
+If you run above command in the PS console, you will likely see that the policy level is either 'Restricted' or 'Undefined'. For AzSK cmdlets to run, it needs to be set to 'RemoteSigned'.
 To resolve this issue run the following command in your PS console:
 ```PowerShell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
@@ -111,10 +111,10 @@ If you have installed AzureRM PowerShell using Azure SDK in your machine, it typ
  Get-Module -Name AzureRM* -ListAvailable 
 ```
 If this is the case, then you need to remove the Azure PowerShell modules installed through Azure SDK completely from the Program Files. You could also take back up in case if you need. 
-AzSDK also need AzureRM modules. But it would download from PSGallery instead of from Azure SDK. This downloading of AzureRM modules from PS Gallery would conflict with AzureRM modules installed through Azure SDK. 
-After cleanup, If you again the run the below command, it would fetch AzureRM version 4.1.0 by default into the current user scope instead of in Program Files. 
+AzSK also need AzureRM modules. But it would download from PSGallery instead of from Azure SDK. This downloading of AzureRM modules from PS Gallery would conflict with AzureRM modules installed through Azure SDK. 
+After cleanup, If you again the run the below command, it would fetch AzureRM version 5.2.0 by default into the current user scope instead of in Program Files. 
 ```PowerShell
-Install-Module AzSDK -Scope CurrentUser -AllowClobber 
+Install-Module AzSK -Scope CurrentUser -AllowClobber 
 ```
 In case you still need to use the other version of AzureRm (that you removed), you can install it from PS Gallery using the command below: 
 ```PowerShell
@@ -124,27 +124,27 @@ Install-Module AzureRM -Scope CurrentUser -AllowClobber -RequiredVersion <versio
 
 If you happen to have multiple versions of AzureRM, then it depends on which version of the module loads first in the PS session. In that case, to avoid confusion, close the installer PS session and in a new PS session run the following first:
 ```PowerShell
-Import-Module AzSDK
+Import-Module AzSK
 ```
-Then you can run one or more AzSDK commands or other AzureRm commands. The *"Import-Module"* ensures that the right version of AzureRM gets loaded into the current session.
+Then you can run one or more AzSK commands or other AzureRm commands. The *"Import-Module"* ensures that the right version of AzureRM gets loaded into the current session.
 
 #### Error message: "WARNING: The version '3.x.y' of module 'AzureRM.Profile' is currently in use. Retry the operation after closing..."
-If you see multiple warning such as the above during setup, it is likely that one or more PowerShell instances are running and have AzureRm modules loaded which are conflicting with the AzSDK installation. In such as case, it is best to ensure that all PS sessions (including the current one) are closed and start the installer in a fresh PS ISE session.
+If you see multiple warning such as the above during setup, it is likely that one or more PowerShell instances are running and have AzureRm modules loaded which are conflicting with the AzSK installation. In such as case, it is best to ensure that all PS sessions (including the current one) are closed and start the installer in a fresh PS ISE session.
 In dire circumstances, you may need to close/kill all instances of PowerShell sessions running on your system (including VS if you have PS plugin installed). In that case, make sure you have saved any work in those sessions and then run the following in a Windows Cmd console:
 ```PowerShell
 taskkill /im PowerShell_ise.exe & taskkill /im PowerShell.exe & taskkill /im PowerShellToolsProcessHost.exe
 ```  
 #### Error message: "The property 'Id' cannot be found on this object. Verify that the property exists..."
-This is typically caused by a version mis-match for underlying AzureRm PowerShell modules that are used by AzSDK! The AzSDK installation process will typically install AzureRm modules corresponding to the version that it depends on. However, it is possible that you also have a previous version of AzureRm on your machine.  
+This is typically caused by a version mis-match for underlying AzureRm PowerShell modules that are used by AzSK! The AzSK installation process will typically install AzureRm modules corresponding to the version that it depends on. However, it is possible that you also have a previous version of AzureRm on your machine.  
 
 PowerShell works with the concept of 'sessions'. Each PowerShell ISE or command prompt window is its own independent session. By default, when any cmdlet is run, PS will load the corresponding module (code) in the memory for that session. After that, subsequent references to cmdlets in that module will use the loaded module. Usually, the module loading follows a particular heuristic (based on version number, PS module path order, admin v. non-admin PS launch mode, etc.)  
 
-The above error message is an indication that an AzSDK cmdlet is being run in a PowerShell session that already had an older version of AzureRm loaded in memory (which may be due to something as simple as doing a Login-AzureRmAccount and *then* installing AzSDK in that session). In most circumstances, one of the following remedies should work:
-- Close the PS session and open a new one. In the new session, do an "*Import-Module AzureRm -RequiredVersion 4.1.0*" before running anything else (e.g., Login-AzureRmAccount)
-- Close the PS session and open a new one. In the new session, do an "*Import-Module AzSDK*" before running anything else. (This will force-load the correct version of AzureRm that AzSDK needs.). 
-  - If you suspect that you may have multiple versions of AzSDK itself installed, then use "*Import-Module AzSDK -RequiredVersion 2.5.0*" (August release).  
+The above error message is an indication that an AzSK cmdlet is being run in a PowerShell session that already had an older version of AzureRm loaded in memory (which may be due to something as simple as doing a Login-AzureRmAccount and *then* installing AzSK in that session). In most circumstances, one of the following remedies should work:
+- Close the PS session and open a new one. In the new session, do an "*Import-Module AzureRm -RequiredVersion 5.2.0*" before running anything else (e.g., Login-AzureRmAccount)
+- Close the PS session and open a new one. In the new session, do an "*Import-Module AzSK*" before running anything else. (This will force-load the correct version of AzureRm that AzSK needs.). 
+  - If you suspect that you may have multiple versions of AzSK itself installed, then use "*Import-Module AzSK -RequiredVersion 2.5.0*" (August release).  
 
 #### Message: "Warning : Microsoft Azure PowerShell collects data about how users use PowerShell cmdlets..."
-The AzSDK depends upon AzureRm PowerShell modules. AzureRm modules are created/maintained by the Azure product team and provide the core PowerShell libraries to interact with different Azure services. For example, you'd use the AzureRm Storage module to create/work with a storage account, etc.  
+The AzSK depends upon AzureRm PowerShell modules. AzureRm modules are created/maintained by the Azure product team and provide the core PowerShell libraries to interact with different Azure services. For example, you'd use the AzureRm Storage module to create/work with a storage account, etc.  
 
-The AzSDK setup installs the required version of AzureRm. It is possible that this is the first time your system is being setup for AzureRm. In such a situation, you will get a 'data collection' related notice/warning from AzureRm. You can choose to 'accept' or 'decline' permission to collect data. The AzSDK functionality will not be affected by that.  
+The AzSK setup installs the required version of AzureRm. It is possible that this is the first time your system is being setup for AzureRm. In such a situation, you will get a 'data collection' related notice/warning from AzureRm. You can choose to 'accept' or 'decline' permission to collect data. The AzSK functionality will not be affected by that.  

@@ -90,7 +90,7 @@
   href: ../../05-Alerting-and-Monitoring/Readme.md
 - name: Security Telemetry
   href: ../../06-Security-Telemetry/Readme.md
-- name: Customizing AzSDK for your organization
-  href: ../../07-Customizing-AzSDK-for-your-Org/Readme.md
+- name: Customizing AzSK for your organization
+  href: ../../07-Customizing-AzSK-for-your-Org/Readme.md
 - name: Advanced features
   href: ../../08-Advanced-Features/Readme.md

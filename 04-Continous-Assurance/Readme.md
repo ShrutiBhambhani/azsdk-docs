@@ -36,7 +36,7 @@ we will add the ability to remind an app team about the security hygiene tasks t
 perform (key rotation, access reviews,  removing inactive/dormant power users, etc.). These two capabilities are on our backlog for H1-FY18.
 
 >**Note:** If you have already installed Continuous Assurance using a version prior to 2.2.0, 
-you should run 'Install-AzSDKContinuousAssurance' command again by following the steps in the next section.
+you should run 'Install-AzSKContinuousAssurance' command again by following the steps in the next section.
 
 
 [Back to top…](Readme.md#contents)
@@ -45,14 +45,14 @@ In this section, we will walk through the steps of setting up a subscription and
 
 To get started, we need the following:
 1. The user setting up Continuous Assurance needs to have 'Owner' access to the subscription. (This is necessary because during setup, 
-AzSDK adds the service principal runtime account as a 'Reader' to the subscription.) 
+AzSK adds the service principal runtime account as a 'Reader' to the subscription.) 
 
 2. Target OMS WorkspaceID* and SharedKey. (The OMS workspace can be in a different subscription, see note below)
 
 
 > **\*Note** CA leverages an OMS repository for aggregating security scan results, you must determine which OMS workspace 
 you will use to view the security state of your subscription and applications (If you don't have an OMS repository please 
-follow the steps in [Setting up the AzSDK OMS Solution](../05-Alerting-and-Monitoring/Readme.md) ). 
+follow the steps in [Setting up the AzSK OMS Solution](../05-Alerting-and-Monitoring/Readme.md) ). 
 This can be a single workspace that is shared by multiple applications which may themselves be in different subscriptions. 
 Alternately, you can have an OMS workspace that is dedicated to monitoring a single application as well. 
 (Ideally, you should use the same workspace that is being used to monitor other aspects like availability, performance, etc. 
@@ -60,12 +60,12 @@ for your application.)
 
 
 **Step-1: Setup**  
-0. Setup the latest version of the AzSDK following the installation instructions for your organization. (For MSIT use http://aka.ms/azsdkdocs).
+0. Setup the latest version of the AzSK following the installation instructions for your organization. (For MSIT use https://aka.ms/azsdkdocs).
 1. Open the PowerShell ISE and login to your Azure account (using **Login-AzureRmAccount**).  
-2. Run the '**Install-AzSDKContinuousAssurance**' command with required parameters given in below table. 
+2. Run the '**Install-AzSKContinuousAssurance**' command with required parameters given in below table. 
 
 ```PowerShell
-	Install-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId> `
+	Install-AzSKContinuousAssurance -SubscriptionId <SubscriptionId> `
 		[-AutomationAccountLocation <AutomationAccountLocation>] `
 	        -ResourceGroupNames <ResourceGroupNames> `
 	        -OMSWorkspaceId <OMSWorkspaceId> `
@@ -111,7 +111,7 @@ Here's a quick summary of the permissions required for the user who sets up CA:
 
 
 **Note-1**: Completion of this one-time setup activity can take up to 2 hours. (This is because one of the things that setup does 
-is download and add PowerShell modules for Azure PS library and for AzSDK. This is a slow and sometimes flaky process and, 
+is download and add PowerShell modules for Azure PS library and for AzSK. This is a slow and sometimes flaky process and, 
 as a result, the setup internally retries failed downloads. The Azure Automation product team is aware of this challenge and are working on a resolution.)
 
 
@@ -120,7 +120,7 @@ It is important to verify that everything has worked without hiccups. Please rev
 
 
 **Step-2: Verifying that CA Setup is complete**  
-**1:** In the Azure portal, select the application subscription that was used above and search for resources of type Automation Account. You should see an Automation Account created by the name 'AzSDKContinuousAssurance'. Clicking on it will display the contents of the Automation Account (something that looks like the below, the counts shown may vary a little):
+**1:** In the Azure portal, select the application subscription that was used above and search for resources of type Automation Account. You should see an Automation Account created by the name 'AzSKContinuousAssurance'. Clicking on it will display the contents of the Automation Account (something that looks like the below, the counts shown may vary a little):
 
  ![04_CA_Overview_Screen](../Images/04_CA_Overview_Screen.png)
 
@@ -138,12 +138,12 @@ It is important to verify that everything has worked without hiccups. Please rev
 
 **Step-3: Verifying that all required modules are downloaded successfully (after about two hours of starting the installation)**
 
-**1**: Click on the 'Modules' tile for the Automation Account. 'AzSDK' module should be listed there. 'Status' column value for all modules should be 'Available' as below.
+**1**: Click on the 'Modules' tile for the Automation Account. 'AzSK' module should be listed there. 'Status' column value for all modules should be 'Available' as below.
 
  ![04_CA_Downloaded_Modules](../Images/04_CA_Downloaded_Modules.png)
  
 **Step-4: Verifying CA Runbook execution and OMS connectivity**  
-Once CA setup and modules download are completed successfully, the runbooks will automatically execute periodically (once a day) and scan the subscription and the specified resource groups for the application(s) for security issues. The outcomes of these scans will get stored in a storage account created by the installation (format : azsdk\<YYYYMMDDHHMMSS> e.g. azsdk20170505181008) and follows a similar structure as followed by standalone SVT execution (CSV file, LOG file, etc.).    
+Once CA setup and modules download are completed successfully, the runbooks will automatically execute periodically (once a day) and scan the subscription and the specified resource groups for the application(s) for security issues. The outcomes of these scans will get stored in a storage account created by the installation (format : azsk\<YYYYMMDDHHMMSS> e.g. azsk20170505181008) and follows a similar structure as followed by standalone SVT execution (CSV file, LOG file, etc.).    
 
 The results of the control evaluation are also routed to the OMS repository for viewing via a security dashboard.  
   
@@ -151,8 +151,8 @@ Let us verify that the runbook output is generated as expected and that the OMS 
 
 **1:** Verify that CSV file and LOG file are getting generated as expected.  
  
-1. Go to Storage Explorer and look for a storage account with a name in azsdk<YYYYMMDDHHMMSS> format in your subscription in 'AzSDKRG' resource group.
-2. Find a container called 'azsdkexecutionlogs' in this storage account.
+1. Go to Storage Explorer and look for a storage account with a name in azsk<YYYYMMDDHHMMSS> format in your subscription in 'AzSKRG' resource group.
+2. Find a container called 'azskexecutionlogs' in this storage account.
 3. There should be a ZIP file named using a timestamp based on the date time for the manual execution in this container (most likely the ZIP file with the most recent creation date). 
 4. Download the ZIP file and extract its contents locally. The folder structure will be similar to how SVTs/Subscription Health scan generate when run locally. 
 5. In a single zip file you will find two folders (name format: Timestamp). One folder contains reports of Subscription Health scan and another folder contains reports of application(s) resource groups security scan.
@@ -162,28 +162,28 @@ Let us verify that the runbook output is generated as expected and that the OMS 
 **2:** Verify that data is being sent to the target OMS workspace   
 
 1. Go to the OMS dashboard that we used to setup CA above.
-2. In the 'Search' window, enter Type=AzSDK_CL Source_s=CC. Source will be changed to 'CA' in future.
+2. In the 'Search' window, enter Type=AzSK_CL Source_s=CC. Source will be changed to 'CA' in future.
 3. You should see results similar to the below:
 	
  ![04_CA_OMS](../Images/04_CA_OMS.PNG)
 
-Once CA is setup in the subscription, an app team can start leveraging the OMS Solution from AzSDK as a one-stop dashboard 
+Once CA is setup in the subscription, an app team can start leveraging the OMS Solution from AzSK as a one-stop dashboard 
 for visibility of security state. Please follow the steps in the OMS solution setup (in Alerting & Monitoring sub-section of 
 this notebook) to enable that part.
 
 [Back to top…](Readme.md#contents)
 ### Continuous Assurance - how it works (under the covers)
-The CA feature is about tracking configuration drift. This is achieved by enabling support for running AzSDK 
+The CA feature is about tracking configuration drift. This is achieved by enabling support for running AzSK 
 SVTs/SS-Health via automation runbook. 
 
 The CA installation script that sets up CA creates the following resources in your subscription:
 
-- Resource group (Name : AzSDKRG) :- 
+- Resource group (Name : AzSKRG) :- 
 To host all the Continuous Assurance artifacts
-- Storage account (Format : azsdkYYYYMMDDHHMMSS) :- To store the daily results of CA scans. The storage account is named with a timestamp-suffix applied to 'azsdk'(e.g. azsdk20170420111140)
+- Storage account (Format : azskYYYYMMDDHHMMSS) :- To store the daily results of CA scans. The storage account is named with a timestamp-suffix applied to 'azsk'(e.g. azsk20170420111140)
 - Azure AD App and Service Principal :- This is used as the runtime identification of the automation runbook. Adds SPN to 'Reader' role on the subscription and contributor role on the resource group containing Automation Account.
-- Automation Account (Name : AzSDKContinuousAssurance) :- Creates the following assets within the Automation Account,
-   - Runbook (Name : Continuous_Assurance_Runbook) - To download/update Azure/AzSDK modules and scan subscription/app resource groups  
+- Automation Account (Name : AzSKContinuousAssurance) :- Creates the following assets within the Automation Account,
+   - Runbook (Name : Continuous_Assurance_Runbook) - To download/update Azure/AzSK modules and scan subscription/app resource groups  
    - Variables 
       - AppResourceGroupNames 
       - OMSWorkspaceId 
@@ -201,12 +201,12 @@ To host all the Continuous Assurance artifacts
 About 63 assets are created overall.
 
 #### Next Steps
-Once CA is setup in the subscription, an app team can start leveraging the OMS Solution from AzSDK as a one-stop dashboard for visibility of security state.
+Once CA is setup in the subscription, an app team can start leveraging the OMS Solution from AzSK as a one-stop dashboard for visibility of security state.
 Occasionally, you may also feel the need to tweak the configuration of CA. See the "Update" section below about how to do that.
 
 [Back to top…](Readme.md#contents)
 ### Update existing Continuous Assurance Automation Account
-The '**Update-AzSDKContinuousAssurance**' command can be used to make changes to a previously setup CA configuration.
+The '**Update-AzSKContinuousAssurance**' command can be used to make changes to a previously setup CA configuration.
 For instance, you may use it to:
 - update the target resource groups to include in the scanning
 - switch the OMS workspace information that CA should use to send control evaluation events to
@@ -215,10 +215,10 @@ For instance, you may use it to:
 
 To do any or all of these:
 1. Open the PowerShell ISE and login to your Azure account (using **Login-AzureRmAccount**).  
-2. Run the '**Update-AzSDKContinuousAssurance**' command with required parameters given in below table. 
+2. Run the '**Update-AzSKContinuousAssurance**' command with required parameters given in below table. 
 
 ```PowerShell
-Update-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId> `
+Update-AzSKContinuousAssurance -SubscriptionId <SubscriptionId> `
     [-ResourceGroupNames <ResourceGroupNames>] `
     [-OMSWorkspaceId <OMSWorkspaceId>] `
     [-OMSSharedKey <OMSSharedKey>] `
@@ -254,26 +254,26 @@ Update-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId> `
 [Back to top…](Readme.md#contents)
 ### Remove Continuous Assurance Automation Account
 1. Open the PowerShell ISE and login to your Azure account (using **Login-AzureRmAccount**).  
-2. Run the '**Remove-AzSDKContinuousAssurance**' command as below. 
+2. Run the '**Remove-AzSKContinuousAssurance**' command as below. 
 
 ```PowerShell
-Remove-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId>  [-DeleteStorageReports] 
+Remove-AzSKContinuousAssurance -SubscriptionId <SubscriptionId>  [-DeleteStorageReports] 
 ```
 |Param Name |Purpose |Required?	|Default value	|Comments|
 |-----|-----|-----|----|-----|
 |SubscriptionId	|Subscription ID of the Azure subscription in which Automation Account exists |True |None||	 
-|DeleteStorageReports |Add this switch to delete AzSDK execution reports from storage account. This will delete the storage container where reports are stored. Generally you will not want to use this option as all previous scan reports will be purged. |False |None||  
+|DeleteStorageReports |Add this switch to delete AzSK execution reports from storage account. This will delete the storage container where reports are stored. Generally you will not want to use this option as all previous scan reports will be purged. |False |None||  
 
 [Back to top…](Readme.md#contents)
 ### Fetch details of an existing Continuous Assurance Automation Account
 1. Open the PowerShell ISE and login to your Azure account (using **Login-AzureRmAccount**).  
-2. Run the '**Get-AzSDKContinuousAssurance**' command as below. 
+2. Run the '**Get-AzSKContinuousAssurance**' command as below. 
 3. Result will display the current status of CA in your subscription. If CA is not working as expected, it will display remediation steps else it will display a message indicating CA is in healthy state.  
 4. Once you follow the remediation steps, run the command again to check if anything is still missing in CA setup. Follow the remediation steps accordingly until the CA state becomes healthy. 
 ```PowerShell
-Get-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId> 
+Get-AzSKContinuousAssurance -SubscriptionId <SubscriptionId> 
 ```
-**Note:** This command is compatible only for Automation Account installed after 5th May, 2017 AzSDK release.
+**Note:** This command is compatible only for Automation Account installed after 5th May, 2017 AzSK release.
 
 [Back to top…](Readme.md#contents)
 
@@ -283,7 +283,7 @@ In scenarios where central team wants to monitor a group of subscriptions from a
 #### Pre-requisites:
 - The user executing this command should have "Owner" access on all the subscriptions that are being enabled for central scanning mode including the central subscription.
 - User should have the latest version of the kit installed on the machine (>= v2.8.1)
-- Optional: Have the own instance of AzSDK setup for your org. This would provide more capabilities to control the scanning behavior
+- Optional: Have the own instance of AzSK setup for your org. This would provide more capabilities to control the scanning behavior
 
 #### Setup Continuous Assurance (CA) in central mode:
 > **Note:** This feature is still in preview. 
@@ -297,7 +297,7 @@ $OMSWorkspaceId = '<omsWorkspaceId>'
 $OMSSharedKey = '<omsSharedKey>' 
 $TargetSubscriptionIds = '<TargetSubscriptionId>' #Need to provide comma separated list of all subscriptionId that needs to be scanned.
 
-Install-AzSDKContinuousAssurance -SubscriptionId $SubscriptionId -TargetSubscriptionIds $TargetSubscriptionIds -ResourceGroupNames $ResourceGroupNames -OMSWorkspaceId $OMSWorkspaceId -OMSSharedKey $OMSSharedKey -Preview
+Install-AzSKContinuousAssurance -SubscriptionId $SubscriptionId -TargetSubscriptionIds $TargetSubscriptionIds -ResourceGroupNames $ResourceGroupNames -OMSWorkspaceId $OMSWorkspaceId -OMSSharedKey $OMSSharedKey -Preview
 ```
 </br>
 
@@ -330,7 +330,7 @@ In case you want to
 </br>(h) the scanning account credential needs to be rotated as part of hygiene/ expiry, or
 </br>(i) modify the logging option to central mode
 
-In all such scenarios, you could run the command below:
+In all such scenarios, you can run the command below:
 
 ```PowerShell
 $SubscriptionId = '<subscriptionId>'
@@ -338,7 +338,7 @@ $OMSWorkspaceId = '<omsWorkspaceId>'
 $OMSSharedKey = '<omsSharedKey>' 
 $TargetSubscriptionIds = '<TargetSubscriptionId>' #Need to provide comma separated list of all subscriptionId that needs to be scanned.
 
-Update-AzSDKContinuousAssurance -SubscriptionId $SubscriptionId -TargetSubscriptionIds $TargetSubscriptionIds -OMSWorkspaceId $OMSWorkspaceId -OMSSharedKey $OMSSharedKey -FixRuntimeAccount -LoggingOption CentralSub -Preview
+Update-AzSKContinuousAssurance -SubscriptionId $SubscriptionId -TargetSubscriptionIds $TargetSubscriptionIds -OMSWorkspaceId $OMSWorkspaceId -OMSSharedKey $OMSSharedKey -FixRuntimeAccount -LoggingOption CentralSub -Preview
 ```
 </br>
 
@@ -359,7 +359,7 @@ You could run the command below. It would diagnose the Continuous Assurance Auto
 ```PowerShell
 $SubscriptionId = '<subscriptionId>'
 
-Get-AzSDKContinuousAssurance -SubscriptionId $SubscriptionId -ExhaustiveCheck
+Get-AzSKContinuousAssurance -SubscriptionId $SubscriptionId -ExhaustiveCheck
 ```
 </br>
 
@@ -378,7 +378,7 @@ In case you want to
 ```PowerShell
 $SubscriptionId = '<subscriptionId>'
 
-Remove-AzSDKContinuousAssurance -SubscriptionId $SubscriptionId -DeleteStorageReports -Preview 
+Remove-AzSKContinuousAssurance -SubscriptionId $SubscriptionId -DeleteStorageReports -Preview 
 ```
 
 
@@ -386,7 +386,7 @@ Remove-AzSDKContinuousAssurance -SubscriptionId $SubscriptionId -DeleteStorageRe
 |----------|--------|----------|-------------|---------|
 |SubscritionId| Central SubscriptionId which is responsible for scanning all the other subscriptions| True | This subscription would host the Automation account which is responsible for scanning all the other subscriptions|
 |TargetSubscriptionIds| Comma separated list of target subIds which will be un-registered from the central scanning mode. | False | |
-|DeleteStorageReports| Deletes all the scan logs from the azsdk storage account based on the logging option and value provided in the target subscription. If used with out preview switch, it would remove all logs from the host sub central storage account.| False | Only include if default diagnosis is not resulting in any issue |
+|DeleteStorageReports| Deletes all the scan logs from the azsk storage account based on the logging option and value provided in the target subscription. If used with out preview switch, it would remove all logs from the host sub central storage account.| False | Only include if default diagnosis is not resulting in any issue |
 
 >**Note** If just subscrptionId is passed, then it would check if the host sub is in central scanning mode, if so, user needs to pass Preview switch. In these scenarios, it would remove the whole automation account from host sub.
 
@@ -399,24 +399,24 @@ You need to be 'Owner' on the subscription.
 This is required because, during CA setup, we add RBAC access to an Azure AD App (SPN) that's utilized for running the 'security scan' runbooks in Azure Automation. Only an'Owner' for a subscription has the right to change subscription RBAC.  
 
 #### Is it possible to setup CA if there is no OMS workspace?
-No. The intent of CA is to scan regularly and be able to monitor the outcomes for security drift. Out of the box, AzSDK CA uses OMS for the monitoring capabilities. (Basically, AzSDK sends control evaluation results to a connected OMS workspace.)  
+No. The intent of CA is to scan regularly and be able to monitor the outcomes for security drift. Out of the box, AzSK CA uses OMS for the monitoring capabilities. (Basically, AzSK sends control evaluation results to a connected OMS workspace.)  
 
 #### Which OMS workspace should I use for my team when setting up CA?
 Check with your service offering leader/org's cloud lead.
 You would typically use one of the following options:
 - Utilize a workspace is shared across a related set of services from your SO
-- Create a new OMS workspace and use that exclusively for your service ('free' tier is OK for just AzSDK use cases)
+- Create a new OMS workspace and use that exclusively for your service ('free' tier is OK for just AzSK use cases)
 - Utilize an IT-wide shared workspace  
 
 #### Why does CA setup ask for resource groups?
 CA supports scanning a subscription and a set of cloud resources that make up an application. These cloud resources are assumed to be hosted within one or more resource groups. A typical CA installation takes both the subscription info and resource groups info.
 
 #### How can I find out if CA was previously setup in my subscription?
-You can check using the "Get-AzSDKContinuousAssurance" cmdlet. If CA is correctly setup, it will show a list of artifacts that are deployed during CA setup (e.g., Automation Account, Connections, Schedules, OMS workspace info, etc.). If CA has not been setup, you will see a message indicating so.
+You can check using the "Get-AzSKContinuousAssurance" cmdlet. If CA is correctly setup, it will show a list of artifacts that are deployed during CA setup (e.g., Automation Account, Connections, Schedules, OMS workspace info, etc.). If CA has not been setup, you will see a message indicating so.
 
 #### How can I tell that my CA setup has worked correctly?
 There are 2 important things you should do to verify this:
-Run the Get-AzSDKContinuousAssurance and confirm that the output tells you as in the previous question.
+Run the Get-AzSKContinuousAssurance and confirm that the output tells you as in the previous question.
 Verify that the runbooks have actually started scanning your subscription and resource groups. You can check for this in OMS.
   
 #### Is providing resource groups mandatory?
@@ -424,18 +424,18 @@ We would like teams to, at a minimum, provide the list of resource groups that c
 If you do provide **"*"** as an option, CA will automatically grow/shrink the resource group list as you add/delete resource groups in your subscription.
   
 #### What if I need to change the resource groups after a few weeks?
-That is easy! Just run the Update-AzSDKContinuousAssurance cmdlet with the new list of resource groups you would like monitored.
+That is easy! Just run the Update-AzSKContinuousAssurance cmdlet with the new list of resource groups you would like monitored.
   
-#### Do I need to also setup AzSDK OMS solution?
+#### Do I need to also setup AzSK OMS solution?
 This part is not mandatory for CA itself to work.
-However, setting up the AzSDK OMS solution is recommended as it will help you get a richer view of continuous assurance for your subscription and resources as scanned by CA. Secondly, it will give you several out-of-box artefacts to assist with security monitoring for your service. For instance, you will start getting email alerts if any of the high or critical severity controls from AzSDK fail in your service.  
+However, setting up the AzSK OMS solution is recommended as it will help you get a richer view of continuous assurance for your subscription and resources as scanned by CA. Secondly, it will give you several out-of-box artefacts to assist with security monitoring for your service. For instance, you will start getting email alerts if any of the high or critical severity controls from AzSK fail in your service.  
 
 #### How much does it cost to setup Continuous Assurance alongwith OMS monitoring solution?
 Using the following ballpark calculations (and service costs as of Q1-FY18), we estimate that a Continuous Assurance
 setup along with an OMS workspace for monitoring will cost a little about $80/year for a typical
 subscription with about 30-40 resources of various types. 
  
-The average cost of AzSDK CA and AzSDK OMS solution per Azure resources comes to about $2.7 per year. (So, assuming
+The average cost of AzSK CA and AzSK OMS solution per Azure resources comes to about $2.7 per year. (So, assuming
 that a typical app has about 30 resources, we get about $81/year for an application.) 
 
 The main/dominant component of the cost is automation runtime (storage/OMS costs are negligible in comparison). 
@@ -455,7 +455,7 @@ The main/dominant component of the cost is automation runtime (storage/OMS costs
 		 
 ###### (b) Blob Storage cost:  ($0.14/year)
 			
-- AzSDK CA Storage accumulation = 150KB / resource * 30 =  4.5MB per day
+- AzSK CA Storage accumulation = 150KB / resource * 30 =  4.5MB per day
 - Average data for the month = 70MB (let’s take 100MB for simplicity) 
 - Retention Cost: 
     - Rate = $.03/50TB/month for GRS-cool SKU 
@@ -474,7 +474,7 @@ The main/dominant component of the cost is automation runtime (storage/OMS costs
  
 ###### (c) OMS storage cost: ($0.34/year)
 
-- Assumes that the team is using OMS for monitoring in general, otherwise, just for AzSDK, free tier is sufficient.
+- Assumes that the team is using OMS for monitoring in general, otherwise, just for AzSK, free tier is sufficient.
 - Data Upload
     - Rate = $2.3 / GB / month
 	- Our usage = 10KB / resource scan => 300KB added per day = ~10MB data written for the month  = (2.3*10*12/1000) = $0.27/year

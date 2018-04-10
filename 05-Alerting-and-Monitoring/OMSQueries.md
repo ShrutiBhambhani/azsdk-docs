@@ -17,7 +17,7 @@ This will help to filter scan results based on latest module version/access/expi
 You can validate your local scan with below query by adding Runidentifier (Runidentifier is nothing but the folder name where local scan resides e.g. "20180112_111359_GRS")
 
 ``` AIQL
-AzSDK_CL
+AzSK_CL
 | where HasAttestationReadPermissions_b == true and HasRequiredAccess_b == true and IsLatestPSModule_b == true and RunIdentifier_s == "<RunIdentifier>"
 ```
 
@@ -26,21 +26,21 @@ AzSDK_CL
 Following query will help you to check effective scan result for baseline controls
 
 ``` AIQL
-let passStatuslist = AzSDK_MetaData_CL
+let passStatuslist = AzSK_MetaData_CL
 | summarize arg_max(TimeGenerated, *)
 | project parsejson(TreatAsPassedStatuses_s);
-let baseControlList = AzSDK_Inventory_CL
+let baseControlList = AzSK_Inventory_CL
 | summarize RunIdentifier_s=max(RunIdentifier_s) by SubscriptionId
 | join kind= inner
 (
-    AzSDK_Inventory_CL
+    AzSK_Inventory_CL
     | where  IsBaselineControl_b == true
 )
 on RunIdentifier_s;
-let elevatedAccessControlStatus = AzSDK_CL
+let elevatedAccessControlStatus = AzSK_CL
 | where TimeGenerated > ago(90d) and HasAttestationReadPermissions_b == true and HasRequiredAccess_b == true and IsLatestPSModule_b == true and IsBaselineControl_b == true  and Tags_s contains "OwnerAccess"
 | summarize arg_max(TimeGenerated,ControlStatus_s) by SubscriptionId,ResourceId,ChildResourceName_s,ControlId_s;
-let readerAccessControlStatus= AzSDK_CL
+let readerAccessControlStatus= AzSK_CL
 | where TimeGenerated > ago(3d) and HasAttestationReadPermissions_b == true and HasRequiredAccess_b == true and IsLatestPSModule_b == true and IsBaselineControl_b == true and Tags_s !contains "OwnerAccess"
 | summarize arg_max(TimeGenerated,ControlStatus_s) by SubscriptionId,ResourceId,ChildResourceName_s,ControlId_s;
 let result = baseControlList
