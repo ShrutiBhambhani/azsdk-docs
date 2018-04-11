@@ -155,7 +155,7 @@ next to it so that it gets masked.
 **Step-5:** Setup Online Policy URL  
 (You may skip this step in a first-pass exploration of CICD integration of SVTs and come back to it later when setting the extension up for a real project.) 
 This feature enables you to set up the CICD task to use your organization's AzSK policies. 
-To use org-specific policies, you can get your org-specific url by (a) running Get-AzSKInfo -InfoType HostInfo and looking at the value of OnlinePolicyStoreUrl or (b) getting it from the AzSKSettings.json file on your machine under 'C:\Users\<userName>\AppData\Local\Microsoft\AzSDK' folder.
+To use org-specific policies, you can get your org-specific url by (a) running Get-AzSKInfo -InfoType HostInfo and looking at the value of OnlinePolicyStoreUrl or (b) getting it from the AzSKSettings.json file on your machine under 'C:\Users\<userName>\AppData\Local\Microsoft\AzSK' folder.
 
 Below, we have added configuration info of 'AzSKServerURL' used by the AzSK team. The URL at your org can be different assuming there is an org-policy setup unique to your org.  
 
@@ -238,7 +238,7 @@ is named by the target resource group that we used 'mptestrg').
 
 Opening/extracting the "AzSK_Logs" ZIP file will reveal a folder structure and files placement identical to 
 what we have seen in the case of ad hoc SVT runs:
-![03_AzSK_Logs](../Images/03_AzSK_Logs.PNG)
+![03_Output_logs](../Images/03_Output_logs.PNG)
 
 [Back to top...](Readme.md#contents)
 
@@ -256,7 +256,7 @@ that are supported by the VSTS task:
 |AzSKServerURL| Org policy url for hosting the central policy configuration| Refer step-5 from the above section for detail steps |
 |EnableServerAuth| Specifies whether Org policy URL (AzSKServerURL) is protected by AAD authentication.| e.g. true - protected by AAD authentication, false - not protected by AAD authentication|
 |AzSKVersion| You could specify which version of toolkit you want to use in your CICD scan. And version specified should be >= N-2 where N is latest prod version. If variable is not provided, it uses the latest version available| e.g. 2.8.1|
-|AzSKModuleName| This variable enable use to participate in the Preview testing. If you want to participate in preview, Provide the module name as "AzSDKPreview". If not used, it would by default uses AzSDK as module name| e.g. AzSDKPreview|
+|AzSKModuleName| This variable enable use to participate in the Preview testing. If you want to participate in preview, Provide the module name as "AzSKPreview". If not used, it would by default uses AzSK as module name| e.g. AzSKPreview|
 |ExtendedCommand| Enables you to provide other switches supported by the Get-AzSKAzureServicesSecurityStatus command to perform focused scanning in the CICD pipeline | e.g. -ControlIds "Azure_Storage_DP_Encrypt_In_Transit,</br>Azure_Storage_DP_Encrypt_At_Rest_Blob" or -UseBaselineControls|
 
 
@@ -304,7 +304,7 @@ This part assumes that you are familiar with Jenkins pipeline at a basic level. 
 ### Adding SVTs in the Jenkins pipeline
 	
 - #### Step-1: Configure Service Principal (SPN) credentials
-	To run the SVT, AzSDK need SPN/application which has reader on resource group.
+	To run the SVT, AzSK need SPN/application which has reader on resource group.
 	To set up an identity for the app(i.e. SPN) and assign reader role on resource group, refer: [article](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal).  
 	You can configure details of SPN using below steps under Jenkins Global Credentials 
     1. Go to Home Page -->  Credentials --> System --> Global Credentials  --> Click on "Add Credentials" --> Select credential type "Microsoft Azure Service Principal"
@@ -316,15 +316,15 @@ This part assumes that you are familiar with Jenkins pipeline at a basic level. 
 		
 	Refer to this [article](https://www.tutorialspoint.com/jenkins/jenkins_setup_build_jobs.htm) to create sample build job
 	
-- #### Step-3: Add the AzSDK-SVT build step to the pipeline.
+- #### Step-3: Add the AzSK-SVT build step to the pipeline.
 	
-	 Click on  "Add build step" and select "AzSDK Security Verification Tests".
+	 Click on  "Add build step" and select "AzSK Security Verification Tests".
 
  
 	![03_Add_Build_Steps](../Images/03_Add_Build_Steps.PNG)  
 
 - #### Step-4: Specify the input parameters for the SVT step.
-	Step displays some configuration inputs that are required for the task to run. Specify SPN credentials id as configured in Step-1. Remaining inputs are none other than the familiar options we have been specifying while running the AzSDK SVTs manually. When the pipeline executes, SVTs will scan the specified set of resources.  
+	Step displays some configuration inputs that are required for the task to run. Specify SPN credentials id as configured in Step-1. Remaining inputs are none other than the familiar options we have been specifying while running the AzSK SVTs manually. When the pipeline executes, SVTs will scan the specified set of resources.  
  
 	![03_Input_Parameter](../Images/03_Input_Parameter.PNG)	
 - #### Step-5: (Optional) Setup connectivity from CICD to OMS.
@@ -353,12 +353,12 @@ This part assumes that you are familiar with Jenkins pipeline at a basic level. 
 - #### Step-3: View the 'Console Output'.
 
 	![03_Trigger_Build_3](../Images/03_Trigger_Build_3.PNG)	  
-- #### Step-4: See the summary "CSV" and detailed "LOG" output files for the AzSDK SVTs.
+- #### Step-4: See the summary "CSV" and detailed "LOG" output files for the AzSK SVTs.
 
 	This is no different than the "ad hoc SVT run" scenarios. SVT outputs the location 
 	of the "CSV" file and the "LOG" file at the end of the run.
 	
-	![03_AzSDK_Logs](../Images/03_AzSDK_Logs.PNG) 
+	![03_Output_logs](../Images/03_Output_logs.PNG) 
 [Back to top...](Readme.md#contents)
 > 	Note :
 > 	- Currently task is configured to not stop if SVT fails.
@@ -368,9 +368,9 @@ Once you have the CSV file and the LOG file for the SVTs execution, the process 
 remediating failures is no different than what is used when SVTs are run manually. Basically, you will 
 need to look at the failed SVTs in the CSV file and the corresponding details about 'what exactly caused 
 each individual failure?' in the LOG file. Thereafter the issue can be remediated (additional guidance 
-available from AzSDK is at the link in the CSV file for each row).  
+available from AzSK is at the link in the CSV file for each row).  
 
-If you chose to route events to OMS, you can also use the AzSDK Solution Pack for OMS to view things 
+If you chose to route events to OMS, you can also use the AzSK Solution Pack for OMS to view things 
 like "build/release security health", long term trends, configure and receive alerts for various 
 conditions (e.g., back to back SVT failures) etc.
 
