@@ -1,6 +1,6 @@
 # Secure Development
 
-![Secure_Development](../Images/Secure_Development.PNG)
+![Secure_Development](../Images/Secure_Development.png)
 
 ### Contents
 ### [Security Verification Tests (SVT)](Readme.md#security-verification-tests-svt-1)
