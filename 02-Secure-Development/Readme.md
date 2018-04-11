@@ -251,21 +251,26 @@ The PDF report consists of following sections:
 
 ### FAQs
 #### What Azure resource types that can be checked?
+
 Below resource types can be checked for validating the security controls 
 
 | Resource Name |Resource Type Name	|Resource Type|
 |-------| ------------- | ----------- |
 |Analysis Services |AnalysisService |Microsoft.AnalysisServices/servers|
+|API Connection|APIConnection|Microsoft.Web/connections|
 |App Services|AppService |Microsoft.Web/sites|
+|Automation Acocunt|Automation|Microsoft.Automation/automationAccounts|
 |Batch accounts |Batch |Microsoft.Batch/batchAccounts|
 |CDN profiles |CDN |Microsoft.Cdn/profiles|
 |Cloud Services|CloudService |Microsoft.ClassicCompute/domainNames|
+|Cosmos DB|Cosmos DB|Microsoft.DocumentDb/databaseAccounts|
 |Data Factories |DataFactory |Microsoft.DataFactory/dataFactories|
 |Data Lake Analytics|DataLakeAnalytics |Microsoft.DataLakeAnalytics/accounts|
 |Data Lake Store|DataLakeStore |Microsoft.DataLakeStore/accounts|
 |Express Route-connected Virtual Networks|ERvNet |Microsoft.Network/virtualNetworks|
 |Event Hubs|EventHub |Microsoft.Eventhub/namespaces|
 |Key Vaults|KeyVault |Microsoft.KeyVault/vaults|
+|Load Balancer|LoadBalancer|Microsoft.Network/loadBalancers|
 |Logic Apps|LogicApps |Microsoft.Logic/Workflows|
 |Notification Hubs|NotificationHub |Microsoft.NotificationHubs/namespaces/notificationHubs|
 |On-premises Data Gateways |ODG |Microsoft.Web/connectionGateways|
@@ -275,6 +280,7 @@ Below resource types can be checked for validating the security controls
 |Service Fabric clusters |ServiceFabric |Microsoft.ServiceFabric/clusters|
 |SQL Databases|SQLDatabase |Microsoft.Sql/servers|
 |Storage Accounts|StorageAccount |Microsoft.Storage/storageAccounts|
+|Stream Analytics|StreamAnalytics|Microsoft.StreamAnalytics/streamingjobs|
 |Traffic Manager profiles |TrafficManager |Microsoft.Network/trafficmanagerprofiles|
 |Virtual Machines|VirtualMachine |Microsoft.Compute/virtualMachines|
 |Virtual Networks|VirtualNetwork |Microsoft.Network/virtualNetworks|
@@ -376,11 +382,11 @@ The screenshots below show the core functionality at work:
 - Error and warning indications for incorrect and possibly vulnerable code:
 	(E.g., use of custom token cache in ADAL scenario)  
 
-![SecIntel_Ex_1](../Images/02_SecIntel_Ex_1.PNG)
+![SecIntel_Ex_1](../Images/02_SecIntel_Ex_1.png)
 
 - Suggestions for corrections/compliant coding practices:
 	(E.g., Instead of Random, the RNGCryptoServiceProvider class should be used in a crypto context.)  
-![02_SecIntel_Ex_2](../Images/02_SecIntel_Ex_2.PNG)  
+![02_SecIntel_Ex_2](../Images/02_SecIntel_Ex_2.png)  
 
 [Back to top…](Readme.md#contents)  
 
@@ -389,7 +395,7 @@ The screenshots below show the core functionality at work:
 
 - Go to **Tools** -> **Extensions and Updates** -> In the left sidebar select **Online** -> **Visual Studio Gallery** and search for **Security IntelliSense** in the right sidebar
 
-![02_SecIntel_VSGallery_Download](../Images/02_SecIntel_VSGallery_Download.PNG)
+![02_SecIntel_VSGallery_Download](../Images/02_SecIntel_VSGallery_Download.png)
 
 - Select Security IntelliSense item and click **Download**
 - After download completes, in the pop-up click **Install**
@@ -401,17 +407,17 @@ The screenshots below show the core functionality at work:
 If you don't have Git setup in your machine, please visit https://git-scm.com/downloads to download it.
 	
 ``` 
-    git clone https://github.com/azsdk/azsdk-secintel-samples.git
+    git clone https://github.com/azsk/azsk-secintel-samples.git
 ```
 	
-- After cloning the repo, navigate to **azsdk-secintel-samples** -> **SecIntelSample** and 
+- After cloning the repo, navigate to **azsk-secintel-samples** -> **SecIntelSample** and 
 open the **SecIntelSample.sln** in Visual Studio (after completing the Security IntelliSense 
 extension installation per steps from above).
 - Build the solution (this will fetch any requisite Nuget packages)
 - Go to View->Solution Explorer and then open one of demo files (e.g., "CryptoSample.cs") in the VS editor. 
    - You should see SecIntel in action -- i.e., code that is in violation of the rules in use for 
    the SecIntel VSIX plugin will appear as red-squigglies (errors) and green-squigglies (warnings).  
-   ![02_SecIntel_Suggestion](../Images/02_SecIntel_Suggestion.PNG)
+   ![02_SecIntel_Suggestion](../Images/02_SecIntel_Suggestion.png)
 
 - Note: In the currently implemented behavior of the extension, 'errors' don’t actually fail the build. 
 We will change this behavior in an upcoming sprint. After that anything that is considered an 'error' will start failing 
@@ -477,7 +483,7 @@ the supported rule templates.
    - If you have the extension installed, you will see a screen such as below with options to 
    "Disable" or "Uninstall" the extension.
 - Click "Uninstall" and restart Visual Studio.
-![02_SecIntel_VSGallery](../Images/02_SecIntel_VSGallery.PNG)  
+![02_SecIntel_VSGallery](../Images/02_SecIntel_VSGallery.png)  
 
 [Back to top…](Readme.md#contents)
 ### What default compiler actions are configured?
